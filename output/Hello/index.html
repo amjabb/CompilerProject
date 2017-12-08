@@ -1,0 +1,2274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello.g4</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <style>
+        body {
+    padding: 20px;
+}
+
+h1 {
+    padding-bottom: 10px;
+}
+
+.border-notop td{
+ border-top: none;
+ }
+    </style>
+    <!--
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+            $('#tabs').tab();
+        });
+    </script>
+    -->
+</head>
+<body>
+<!--
+    <div class="container">
+
+        <div id="content">
+            <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                <li class="active"><a href="#grammar" data-toggle="tab">grammar</a></li>
+                <li><a href="#diagrams" data-toggle="tab">diagrams</a></li>
+                <li><a href="#help" data-toggle="tab">help</a></li>
+            </ul>
+            <div id="my-tab-content" class="tab-content">
+                <div class="tab-pane active" id="grammar">
+                    <h1>grammar</h1>
+                    <p>the grammar</p>
+                </div>
+                <div class="tab-pane" id="diagrams">
+                    <h1>diagrams</h1>
+                    <p>the diagrams</p>
+                </div>
+                <div class="tab-pane" id="help">
+                    <h1>help</h1>
+                    <p>?</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+-->
+
+    <h1>Hello.g4</h1>
+
+    <table class="table">
+        <tbody>
+            <tr><td id="program"><h4>program</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="457" height="62" viewBox="0 0 457 62">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M416 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h0">
+</path>
+<path d="M396 31h0">
+</path>
+<path d="M60 31h10">
+</path>
+<g>
+<path d="M70 31h0">
+</path>
+<path d="M146 31h0">
+</path>
+<rect x="70" y="20" width="76" height="22" rx="10" ry="10">
+</rect>
+<text x="108" y="35">
+'avast'</text>
+</g>
+<path d="M146 31h10">
+</path>
+<path d="M156 31h10">
+</path>
+<g>
+<path d="M166 31h0">
+</path>
+<path d="M258 31h0">
+</path>
+<rect x="166" y="20" width="92" height="22">
+</rect>
+<a xlink:href="index.html#stmt_list"><text x="212" y="35">
+stmt_list</text></a>
+</g>
+<path d="M258 31h10">
+</path>
+<path d="M268 31h10">
+</path>
+<g>
+<path d="M278 31h0">
+</path>
+<path d="M386 31h0">
+</path>
+<rect x="278" y="20" width="108" height="22" rx="10" ry="10">
+</rect>
+<text x="332" y="35">
+'blackSpot'</text>
+</g>
+<path d="M386 31h10">
+</path>
+</g>
+<path d="M396 31h20">
+</path>
+</g>
+<path d="M 416 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="stmt_list"><h4>stmt_list</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="305" height="92" viewBox="0 0 305 92">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M264 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h0">
+</path>
+<path d="M244 31h0">
+</path>
+<path d="M60 31h10">
+</path>
+<g>
+<path d="M70 31h0">
+</path>
+<path d="M162 31h0">
+</path>
+<rect x="70" y="20" width="92" height="22">
+</rect>
+<a xlink:href="index.html#stmt_list"><text x="116" y="35">
+stmt_list</text></a>
+</g>
+<path d="M162 31h10">
+</path>
+<path d="M172 31h10">
+</path>
+<g>
+<path d="M182 31h0">
+</path>
+<path d="M234 31h0">
+</path>
+<rect x="182" y="20" width="52" height="22">
+</rect>
+<a xlink:href="index.html#stmt"><text x="208" y="35">
+stmt</text></a>
+</g>
+<path d="M234 31h10">
+</path>
+</g>
+<path d="M244 31h20">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 61h56">
+</path>
+<path d="M188 61h56">
+</path>
+<path d="M116 61h10">
+</path>
+<g>
+<path d="M126 61h0">
+</path>
+<path d="M178 61h0">
+</path>
+<rect x="126" y="50" width="52" height="22">
+</rect>
+<a xlink:href="index.html#stmt"><text x="152" y="65">
+stmt</text></a>
+</g>
+<path d="M178 61h10">
+</path>
+</g>
+<path d="M244 61a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10">
+</path>
+</g>
+<path d="M 264 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="stmt"><h4>stmt</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="257" height="212" viewBox="0 0 257 212">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M216 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h4">
+</path>
+<path d="M192 31h4">
+</path>
+<path d="M64 31h10">
+</path>
+<g>
+<path d="M74 31h0">
+</path>
+<path d="M182 31h0">
+</path>
+<rect x="74" y="20" width="108" height="22">
+</rect>
+<a xlink:href="index.html#assign_stmt"><text x="128" y="35">
+assign_stmt</text></a>
+</g>
+<path d="M182 31h10">
+</path>
+</g>
+<path d="M196 31h20">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 61h12">
+</path>
+<path d="M184 61h12">
+</path>
+<path d="M72 61h10">
+</path>
+<g>
+<path d="M82 61h0">
+</path>
+<path d="M174 61h0">
+</path>
+<rect x="82" y="50" width="92" height="22">
+</rect>
+<a xlink:href="index.html#read_stmt"><text x="128" y="65">
+read_stmt</text></a>
+</g>
+<path d="M174 61h10">
+</path>
+</g>
+<path d="M196 61a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v40a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 91h8">
+</path>
+<path d="M188 91h8">
+</path>
+<path d="M68 91h10">
+</path>
+<g>
+<path d="M78 91h0">
+</path>
+<path d="M178 91h0">
+</path>
+<rect x="78" y="80" width="100" height="22">
+</rect>
+<a xlink:href="index.html#write_stmt"><text x="128" y="95">
+write_stmt</text></a>
+</g>
+<path d="M178 91h10">
+</path>
+</g>
+<path d="M196 91a10 10 0 0 0 10 -10v-40a10 10 0 0 1 10 -10">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v70a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 121h20">
+</path>
+<path d="M176 121h20">
+</path>
+<path d="M80 121h10">
+</path>
+<g>
+<path d="M90 121h0">
+</path>
+<path d="M166 121h0">
+</path>
+<rect x="90" y="110" width="76" height="22">
+</rect>
+<a xlink:href="index.html#if_stmt"><text x="128" y="125">
+if_stmt</text></a>
+</g>
+<path d="M166 121h10">
+</path>
+</g>
+<path d="M196 121a10 10 0 0 0 10 -10v-70a10 10 0 0 1 10 -10">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v100a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 151h8">
+</path>
+<path d="M188 151h8">
+</path>
+<path d="M68 151h10">
+</path>
+<g>
+<path d="M78 151h0">
+</path>
+<path d="M178 151h0">
+</path>
+<rect x="78" y="140" width="100" height="22">
+</rect>
+<a xlink:href="index.html#while_stmt"><text x="128" y="155">
+while_stmt</text></a>
+</g>
+<path d="M178 151h10">
+</path>
+</g>
+<path d="M196 151a10 10 0 0 0 10 -10v-100a10 10 0 0 1 10 -10">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v130a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 181h0">
+</path>
+<path d="M196 181h0">
+</path>
+<path d="M60 181h10">
+</path>
+<g>
+<path d="M70 181h0">
+</path>
+<path d="M186 181h0">
+</path>
+<rect x="70" y="170" width="116" height="22">
+</rect>
+<a xlink:href="index.html#compare_stmt"><text x="128" y="185">
+compare_stmt</text></a>
+</g>
+<path d="M186 181h10">
+</path>
+</g>
+<path d="M196 181a10 10 0 0 0 10 -10v-130a10 10 0 0 1 10 -10">
+</path>
+</g>
+<path d="M 216 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="assign_stmt"><h4>assign_stmt</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="377" height="62" viewBox="0 0 377 62">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M336 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h0">
+</path>
+<path d="M316 31h0">
+</path>
+<path d="M60 31h10">
+</path>
+<g>
+<path d="M70 31h0">
+</path>
+<path d="M130 31h0">
+</path>
+<rect x="70" y="20" width="60" height="22">
+</rect>
+<a xlink:href="index.html#ident"><text x="100" y="35">
+ident</text></a>
+</g>
+<path d="M130 31h10">
+</path>
+<path d="M140 31h10">
+</path>
+<g>
+<path d="M150 31h0">
+</path>
+<path d="M234 31h0">
+</path>
+<rect x="150" y="20" width="84" height="22" rx="10" ry="10">
+</rect>
+<text x="192" y="35">
+'duffle'</text>
+</g>
+<path d="M234 31h10">
+</path>
+<path d="M244 31h10">
+</path>
+<g>
+<path d="M254 31h0">
+</path>
+<path d="M306 31h0">
+</path>
+<rect x="254" y="20" width="52" height="22">
+</rect>
+<a xlink:href="index.html#expr"><text x="280" y="35">
+expr</text></a>
+</g>
+<path d="M306 31h10">
+</path>
+</g>
+<path d="M316 31h20">
+</path>
+</g>
+<path d="M 336 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="read_stmt"><h4>read_stmt</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="305" height="62" viewBox="0 0 305 62">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M264 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h0">
+</path>
+<path d="M244 31h0">
+</path>
+<path d="M60 31h10">
+</path>
+<g>
+<path d="M70 31h0">
+</path>
+<path d="M138 31h0">
+</path>
+<rect x="70" y="20" width="68" height="22" rx="10" ry="10">
+</rect>
+<text x="104" y="35">
+'ahoy'</text>
+</g>
+<path d="M138 31h10">
+</path>
+<path d="M148 31h10">
+</path>
+<g>
+<path d="M158 31h0">
+</path>
+<path d="M234 31h0">
+</path>
+<rect x="158" y="20" width="76" height="22">
+</rect>
+<a xlink:href="index.html#id_list"><text x="196" y="35">
+id_list</text></a>
+</g>
+<path d="M234 31h10">
+</path>
+</g>
+<path d="M244 31h20">
+</path>
+</g>
+<path d="M 264 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="write_stmt"><h4>write_stmt</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="377" height="62" viewBox="0 0 377 62">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M336 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h0">
+</path>
+<path d="M316 31h0">
+</path>
+<path d="M60 31h10">
+</path>
+<g>
+<path d="M70 31h0">
+</path>
+<path d="M194 31h0">
+</path>
+<rect x="70" y="20" width="124" height="22" rx="10" ry="10">
+</rect>
+<text x="132" y="35">
+'feedTheFish'</text>
+</g>
+<path d="M194 31h10">
+</path>
+<path d="M204 31h10">
+</path>
+<g>
+<path d="M214 31h0">
+</path>
+<path d="M306 31h0">
+</path>
+<rect x="214" y="20" width="92" height="22">
+</rect>
+<a xlink:href="index.html#expr_list"><text x="260" y="35">
+expr_list</text></a>
+</g>
+<path d="M306 31h10">
+</path>
+</g>
+<path d="M316 31h20">
+</path>
+</g>
+<path d="M 336 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="id_list"><h4>id_list</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="361" height="92" viewBox="0 0 361 92">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M320 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h0">
+</path>
+<path d="M300 31h0">
+</path>
+<path d="M60 31h10">
+</path>
+<g>
+<path d="M70 31h0">
+</path>
+<path d="M146 31h0">
+</path>
+<rect x="70" y="20" width="76" height="22">
+</rect>
+<a xlink:href="index.html#id_list"><text x="108" y="35">
+id_list</text></a>
+</g>
+<path d="M146 31h10">
+</path>
+<path d="M156 31h10">
+</path>
+<g>
+<path d="M166 31h0">
+</path>
+<path d="M210 31h0">
+</path>
+<rect x="166" y="20" width="44" height="22" rx="10" ry="10">
+</rect>
+<text x="188" y="35">
+','</text>
+</g>
+<path d="M210 31h10">
+</path>
+<path d="M220 31h10">
+</path>
+<g>
+<path d="M230 31h0">
+</path>
+<path d="M290 31h0">
+</path>
+<rect x="230" y="20" width="60" height="22">
+</rect>
+<a xlink:href="index.html#ident"><text x="260" y="35">
+ident</text></a>
+</g>
+<path d="M290 31h10">
+</path>
+</g>
+<path d="M300 31h20">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 61h80">
+</path>
+<path d="M220 61h80">
+</path>
+<path d="M140 61h10">
+</path>
+<g>
+<path d="M150 61h0">
+</path>
+<path d="M210 61h0">
+</path>
+<rect x="150" y="50" width="60" height="22">
+</rect>
+<a xlink:href="index.html#ident"><text x="180" y="65">
+ident</text></a>
+</g>
+<path d="M210 61h10">
+</path>
+</g>
+<path d="M300 61a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10">
+</path>
+</g>
+<path d="M 320 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="expr_list"><h4>expr_list</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="369" height="92" viewBox="0 0 369 92">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M328 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h0">
+</path>
+<path d="M308 31h0">
+</path>
+<path d="M60 31h10">
+</path>
+<g>
+<path d="M70 31h0">
+</path>
+<path d="M162 31h0">
+</path>
+<rect x="70" y="20" width="92" height="22">
+</rect>
+<a xlink:href="index.html#expr_list"><text x="116" y="35">
+expr_list</text></a>
+</g>
+<path d="M162 31h10">
+</path>
+<path d="M172 31h10">
+</path>
+<g>
+<path d="M182 31h0">
+</path>
+<path d="M226 31h0">
+</path>
+<rect x="182" y="20" width="44" height="22" rx="10" ry="10">
+</rect>
+<text x="204" y="35">
+','</text>
+</g>
+<path d="M226 31h10">
+</path>
+<path d="M236 31h10">
+</path>
+<g>
+<path d="M246 31h0">
+</path>
+<path d="M298 31h0">
+</path>
+<rect x="246" y="20" width="52" height="22">
+</rect>
+<a xlink:href="index.html#expr"><text x="272" y="35">
+expr</text></a>
+</g>
+<path d="M298 31h10">
+</path>
+</g>
+<path d="M308 31h20">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 61h88">
+</path>
+<path d="M220 61h88">
+</path>
+<path d="M148 61h10">
+</path>
+<g>
+<path d="M158 61h0">
+</path>
+<path d="M210 61h0">
+</path>
+<rect x="158" y="50" width="52" height="22">
+</rect>
+<a xlink:href="index.html#expr"><text x="184" y="65">
+expr</text></a>
+</g>
+<path d="M210 61h10">
+</path>
+</g>
+<path d="M308 61a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10">
+</path>
+</g>
+<path d="M 328 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="expr"><h4>expr</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="385" height="122" viewBox="0 0 385 122">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M344 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h0">
+</path>
+<path d="M324 31h0">
+</path>
+<path d="M60 31h10">
+</path>
+<g>
+<path d="M70 31h0">
+</path>
+<path d="M122 31h0">
+</path>
+<rect x="70" y="20" width="52" height="22">
+</rect>
+<a xlink:href="index.html#expr"><text x="96" y="35">
+expr</text></a>
+</g>
+<path d="M122 31h10">
+</path>
+<path d="M132 31h10">
+</path>
+<g>
+<path d="M142 31h0">
+</path>
+<path d="M226 31h0">
+</path>
+<rect x="142" y="20" width="84" height="22">
+</rect>
+<a xlink:href="index.html#operator"><text x="184" y="35">
+operator</text></a>
+</g>
+<path d="M226 31h10">
+</path>
+<path d="M236 31h10">
+</path>
+<g>
+<path d="M246 31h0">
+</path>
+<path d="M314 31h0">
+</path>
+<rect x="246" y="20" width="68" height="22">
+</rect>
+<a xlink:href="index.html#factor"><text x="280" y="35">
+factor</text></a>
+</g>
+<path d="M314 31h10">
+</path>
+</g>
+<path d="M324 31h20">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 61h88">
+</path>
+<path d="M236 61h88">
+</path>
+<path d="M148 61h10">
+</path>
+<g>
+<path d="M158 61h0">
+</path>
+<path d="M226 61h0">
+</path>
+<rect x="158" y="50" width="68" height="22">
+</rect>
+<a xlink:href="index.html#factor"><text x="192" y="65">
+factor</text></a>
+</g>
+<path d="M226 61h10">
+</path>
+</g>
+<path d="M324 61a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v40a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 91h0">
+</path>
+<path d="M324 91h0">
+</path>
+<path d="M60 91h10">
+</path>
+<g>
+<path d="M70 91h0">
+</path>
+<path d="M122 91h0">
+</path>
+<rect x="70" y="80" width="52" height="22">
+</rect>
+<a xlink:href="index.html#expr"><text x="96" y="95">
+expr</text></a>
+</g>
+<path d="M122 91h10">
+</path>
+<path d="M132 91h10">
+</path>
+<g>
+<path d="M142 91h0">
+</path>
+<path d="M242 91h0">
+</path>
+<rect x="142" y="80" width="100" height="22">
+</rect>
+<a xlink:href="index.html#compare_op"><text x="192" y="95">
+compare_op</text></a>
+</g>
+<path d="M242 91h10">
+</path>
+<path d="M252 91h10">
+</path>
+<g>
+<path d="M262 91h0">
+</path>
+<path d="M314 91h0">
+</path>
+<rect x="262" y="80" width="52" height="22">
+</rect>
+<a xlink:href="index.html#expr"><text x="288" y="95">
+expr</text></a>
+</g>
+<path d="M314 91h10">
+</path>
+</g>
+<path d="M324 91a10 10 0 0 0 10 -10v-40a10 10 0 0 1 10 -10">
+</path>
+</g>
+<path d="M 344 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="factor"><h4>factor</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="217" height="92" viewBox="0 0 217 92">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M176 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h8">
+</path>
+<path d="M148 31h8">
+</path>
+<path d="M68 31h10">
+</path>
+<g>
+<path d="M78 31h0">
+</path>
+<path d="M138 31h0">
+</path>
+<rect x="78" y="20" width="60" height="22">
+</rect>
+<a xlink:href="index.html#ident"><text x="108" y="35">
+ident</text></a>
+</g>
+<path d="M138 31h10">
+</path>
+</g>
+<path d="M156 31h20">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 61h0">
+</path>
+<path d="M156 61h0">
+</path>
+<path d="M60 61h10">
+</path>
+<g>
+<path d="M70 61h0">
+</path>
+<path d="M146 61h0">
+</path>
+<rect x="70" y="50" width="76" height="22">
+</rect>
+<a xlink:href="index.html#integer"><text x="108" y="65">
+integer</text></a>
+</g>
+<path d="M146 61h10">
+</path>
+</g>
+<path d="M156 61a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10">
+</path>
+</g>
+<path d="M 176 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="integer"><h4>integer</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="293" height="72" viewBox="0 0 293 72">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 31 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 41h0">
+</path>
+<path d="M252 41h0">
+</path>
+<path d="M40 41h20">
+</path>
+<g>
+<path d="M60 41h0">
+</path>
+<path d="M232 41h0">
+</path>
+<g>
+<path d="M60 41h0">
+</path>
+<path d="M144 41h0">
+</path>
+<path d="M60 41a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10">
+</path>
+<g>
+<path d="M80 21h44">
+</path>
+</g>
+<path d="M124 21a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10">
+</path>
+<path d="M60 41h20">
+</path>
+<g>
+<path d="M80 41h0">
+</path>
+<path d="M124 41h0">
+</path>
+<rect x="80" y="30" width="44" height="22" rx="10" ry="10">
+</rect>
+<text x="102" y="45">
+'-'</text>
+</g>
+<path d="M124 41h20">
+</path>
+</g>
+<path d="M144 41h10">
+</path>
+<g>
+<path d="M154 41h0">
+</path>
+<path d="M222 41h0">
+</path>
+<rect x="154" y="30" width="68" height="22" rx="10" ry="10">
+</rect>
+<a xlink:href="index.html#NUMBER"><text x="188" y="45">
+NUMBER</text></a>
+</g>
+<path d="M222 41h10">
+</path>
+</g>
+<path d="M232 41h20">
+</path>
+</g>
+<path d="M 252 41 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="compare_op"><h4>compare_op</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="193" height="182" viewBox="0 0 193 182">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M152 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h0">
+</path>
+<path d="M132 31h0">
+</path>
+<path d="M60 31h10">
+</path>
+<g>
+<path d="M70 31h0">
+</path>
+<path d="M122 31h0">
+</path>
+<rect x="70" y="20" width="52" height="22" rx="10" ry="10">
+</rect>
+<text x="96" y="35">
+'=='</text>
+</g>
+<path d="M122 31h10">
+</path>
+</g>
+<path d="M132 31h20">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 61h4">
+</path>
+<path d="M128 61h4">
+</path>
+<path d="M64 61h10">
+</path>
+<g>
+<path d="M74 61h0">
+</path>
+<path d="M118 61h0">
+</path>
+<rect x="74" y="50" width="44" height="22" rx="10" ry="10">
+</rect>
+<text x="96" y="65">
+'&lt;'</text>
+</g>
+<path d="M118 61h10">
+</path>
+</g>
+<path d="M132 61a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v40a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 91h4">
+</path>
+<path d="M128 91h4">
+</path>
+<path d="M64 91h10">
+</path>
+<g>
+<path d="M74 91h0">
+</path>
+<path d="M118 91h0">
+</path>
+<rect x="74" y="80" width="44" height="22" rx="10" ry="10">
+</rect>
+<text x="96" y="95">
+'>'</text>
+</g>
+<path d="M118 91h10">
+</path>
+</g>
+<path d="M132 91a10 10 0 0 0 10 -10v-40a10 10 0 0 1 10 -10">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v70a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 121h0">
+</path>
+<path d="M132 121h0">
+</path>
+<path d="M60 121h10">
+</path>
+<g>
+<path d="M70 121h0">
+</path>
+<path d="M122 121h0">
+</path>
+<rect x="70" y="110" width="52" height="22" rx="10" ry="10">
+</rect>
+<text x="96" y="125">
+'>='</text>
+</g>
+<path d="M122 121h10">
+</path>
+</g>
+<path d="M132 121a10 10 0 0 0 10 -10v-70a10 10 0 0 1 10 -10">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v100a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 151h0">
+</path>
+<path d="M132 151h0">
+</path>
+<path d="M60 151h10">
+</path>
+<g>
+<path d="M70 151h0">
+</path>
+<path d="M122 151h0">
+</path>
+<rect x="70" y="140" width="52" height="22" rx="10" ry="10">
+</rect>
+<text x="96" y="155">
+'&lt;='</text>
+</g>
+<path d="M122 151h10">
+</path>
+</g>
+<path d="M132 151a10 10 0 0 0 10 -10v-100a10 10 0 0 1 10 -10">
+</path>
+</g>
+<path d="M 152 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="compare_stmt"><h4>compare_stmt</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="385" height="62" viewBox="0 0 385 62">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M344 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h0">
+</path>
+<path d="M324 31h0">
+</path>
+<path d="M60 31h10">
+</path>
+<g>
+<path d="M70 31h0">
+</path>
+<path d="M122 31h0">
+</path>
+<rect x="70" y="20" width="52" height="22">
+</rect>
+<a xlink:href="index.html#expr"><text x="96" y="35">
+expr</text></a>
+</g>
+<path d="M122 31h10">
+</path>
+<path d="M132 31h10">
+</path>
+<g>
+<path d="M142 31h0">
+</path>
+<path d="M242 31h0">
+</path>
+<rect x="142" y="20" width="100" height="22">
+</rect>
+<a xlink:href="index.html#compare_op"><text x="192" y="35">
+compare_op</text></a>
+</g>
+<path d="M242 31h10">
+</path>
+<path d="M252 31h10">
+</path>
+<g>
+<path d="M262 31h0">
+</path>
+<path d="M314 31h0">
+</path>
+<rect x="262" y="20" width="52" height="22">
+</rect>
+<a xlink:href="index.html#expr"><text x="288" y="35">
+expr</text></a>
+</g>
+<path d="M314 31h10">
+</path>
+</g>
+<path d="M324 31h20">
+</path>
+</g>
+<path d="M 344 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="operator"><h4>operator</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="233" height="92" viewBox="0 0 233 92">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M192 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h8">
+</path>
+<path d="M164 31h8">
+</path>
+<path d="M68 31h10">
+</path>
+<g>
+<path d="M78 31h0">
+</path>
+<path d="M154 31h0">
+</path>
+<rect x="78" y="20" width="76" height="22" rx="10" ry="10">
+</rect>
+<text x="116" y="35">
+'booty'</text>
+</g>
+<path d="M154 31h10">
+</path>
+</g>
+<path d="M172 31h20">
+</path>
+<path d="M40 31a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M60 61h0">
+</path>
+<path d="M172 61h0">
+</path>
+<path d="M60 61h10">
+</path>
+<g>
+<path d="M70 61h0">
+</path>
+<path d="M162 61h0">
+</path>
+<rect x="70" y="50" width="92" height="22" rx="10" ry="10">
+</rect>
+<text x="116" y="65">
+'pillage'</text>
+</g>
+<path d="M162 61h10">
+</path>
+</g>
+<path d="M172 61a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10">
+</path>
+</g>
+<path d="M 192 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="ident"><h4>ident</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="177" height="62" viewBox="0 0 177 62">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M136 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h0">
+</path>
+<path d="M116 31h0">
+</path>
+<path d="M60 31h10">
+</path>
+<g>
+<path d="M70 31h0">
+</path>
+<path d="M106 31h0">
+</path>
+<rect x="70" y="20" width="36" height="22" rx="10" ry="10">
+</rect>
+<a xlink:href="index.html#ID"><text x="88" y="35">
+ID</text></a>
+</g>
+<path d="M106 31h10">
+</path>
+</g>
+<path d="M116 31h20">
+</path>
+</g>
+<path d="M 136 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="if_stmt"><h4>if_stmt</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="761" height="72" viewBox="0 0 761 72">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 31 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 41h0">
+</path>
+<path d="M720 41h0">
+</path>
+<path d="M40 41h20">
+</path>
+<g>
+<path d="M60 41h0">
+</path>
+<path d="M700 41h0">
+</path>
+<path d="M60 41h10">
+</path>
+<g>
+<path d="M70 41h0">
+</path>
+<path d="M138 41h0">
+</path>
+<rect x="70" y="30" width="68" height="22" rx="10" ry="10">
+</rect>
+<text x="104" y="45">
+'ahoy'</text>
+</g>
+<path d="M138 41h10">
+</path>
+<path d="M148 41h10">
+</path>
+<g>
+<path d="M158 41h0">
+</path>
+<path d="M202 41h0">
+</path>
+<rect x="158" y="30" width="44" height="22" rx="10" ry="10">
+</rect>
+<text x="180" y="45">
+'('</text>
+</g>
+<path d="M202 41h10">
+</path>
+<path d="M212 41h10">
+</path>
+<g>
+<path d="M222 41h0">
+</path>
+<path d="M274 41h0">
+</path>
+<rect x="222" y="30" width="52" height="22">
+</rect>
+<a xlink:href="index.html#expr"><text x="248" y="45">
+expr</text></a>
+</g>
+<path d="M274 41h10">
+</path>
+<path d="M284 41h10">
+</path>
+<g>
+<path d="M294 41h0">
+</path>
+<path d="M338 41h0">
+</path>
+<rect x="294" y="30" width="44" height="22" rx="10" ry="10">
+</rect>
+<text x="316" y="45">
+')'</text>
+</g>
+<path d="M338 41h10">
+</path>
+<path d="M348 41h10">
+</path>
+<g>
+<path d="M358 41h0">
+</path>
+<path d="M410 41h0">
+</path>
+<rect x="358" y="30" width="52" height="22">
+</rect>
+<a xlink:href="index.html#stmt"><text x="384" y="45">
+stmt</text></a>
+</g>
+<path d="M410 41h10">
+</path>
+<g>
+<path d="M420 41h0">
+</path>
+<path d="M700 41h0">
+</path>
+<path d="M420 41a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10">
+</path>
+<g>
+<path d="M440 21h240">
+</path>
+</g>
+<path d="M680 21a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10">
+</path>
+<path d="M420 41h20">
+</path>
+<g>
+<path d="M440 41h0">
+</path>
+<path d="M680 41h0">
+</path>
+<path d="M440 41h20">
+</path>
+<g>
+<path d="M460 41h0">
+</path>
+<path d="M660 41h0">
+</path>
+<path d="M460 41h10">
+</path>
+<g>
+<path d="M470 41h0">
+</path>
+<path d="M578 41h0">
+</path>
+<rect x="470" y="30" width="108" height="22" rx="10" ry="10">
+</rect>
+<text x="524" y="45">
+'ahoyMatey'</text>
+</g>
+<path d="M578 41h10">
+</path>
+<path d="M588 41h10">
+</path>
+<g>
+<path d="M598 41h0">
+</path>
+<path d="M650 41h0">
+</path>
+<rect x="598" y="30" width="52" height="22">
+</rect>
+<a xlink:href="index.html#stmt"><text x="624" y="45">
+stmt</text></a>
+</g>
+<path d="M650 41h10">
+</path>
+</g>
+<path d="M660 41h20">
+</path>
+</g>
+<path d="M680 41h20">
+</path>
+</g>
+</g>
+<path d="M700 41h20">
+</path>
+</g>
+<path d="M 720 41 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="while_stmt"><h4>while_stmt</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="537" height="62" viewBox="0 0 537 62">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M496 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h0">
+</path>
+<path d="M476 31h0">
+</path>
+<path d="M60 31h10">
+</path>
+<g>
+<path d="M70 31h0">
+</path>
+<path d="M194 31h0">
+</path>
+<rect x="70" y="20" width="124" height="22" rx="10" ry="10">
+</rect>
+<text x="132" y="35">
+'swabTheDeck'</text>
+</g>
+<path d="M194 31h10">
+</path>
+<path d="M204 31h10">
+</path>
+<g>
+<path d="M214 31h0">
+</path>
+<path d="M258 31h0">
+</path>
+<rect x="214" y="20" width="44" height="22" rx="10" ry="10">
+</rect>
+<text x="236" y="35">
+'('</text>
+</g>
+<path d="M258 31h10">
+</path>
+<path d="M268 31h10">
+</path>
+<g>
+<path d="M278 31h0">
+</path>
+<path d="M330 31h0">
+</path>
+<rect x="278" y="20" width="52" height="22">
+</rect>
+<a xlink:href="index.html#expr"><text x="304" y="35">
+expr</text></a>
+</g>
+<path d="M330 31h10">
+</path>
+<path d="M340 31h10">
+</path>
+<g>
+<path d="M350 31h0">
+</path>
+<path d="M394 31h0">
+</path>
+<rect x="350" y="20" width="44" height="22" rx="10" ry="10">
+</rect>
+<text x="372" y="35">
+')'</text>
+</g>
+<path d="M394 31h10">
+</path>
+<path d="M404 31h10">
+</path>
+<g>
+<path d="M414 31h0">
+</path>
+<path d="M466 31h0">
+</path>
+<rect x="414" y="20" width="52" height="22">
+</rect>
+<a xlink:href="index.html#stmt"><text x="440" y="35">
+stmt</text></a>
+</g>
+<path d="M466 31h10">
+</path>
+</g>
+<path d="M476 31h20">
+</path>
+</g>
+<path d="M 496 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="ID"><h4>ID</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="321" height="100" viewBox="0 0 321 100">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M280 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h0">
+</path>
+<path d="M260 31h0">
+</path>
+<path d="M60 31h10">
+</path>
+<g>
+<path d="M70 31h0">
+</path>
+<path d="M250 31h0">
+</path>
+<path d="M70 31h10">
+</path>
+<g>
+<path d="M80 31h0">
+</path>
+<path d="M240 31h0">
+</path>
+<path d="M80 31h20">
+</path>
+<g>
+<path d="M100 31h0">
+</path>
+<path d="M220 31h0">
+</path>
+<path d="M100 31h10">
+</path>
+<g>
+<path d="M110 31h0">
+</path>
+<path d="M210 31h0">
+</path>
+<rect x="110" y="20" width="100" height="22" rx="10" ry="10">
+</rect>
+<text x="160" y="35">
+'a' .. 'z'</text>
+</g>
+<path d="M210 31h10">
+</path>
+</g>
+<path d="M220 31h20">
+</path>
+<path d="M80 31a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M100 61h0">
+</path>
+<path d="M220 61h0">
+</path>
+<path d="M100 61h10">
+</path>
+<g>
+<path d="M110 61h0">
+</path>
+<path d="M210 61h0">
+</path>
+<rect x="110" y="50" width="100" height="22" rx="10" ry="10">
+</rect>
+<text x="160" y="65">
+'A' .. 'Z'</text>
+</g>
+<path d="M210 61h10">
+</path>
+</g>
+<path d="M220 61a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10">
+</path>
+</g>
+<path d="M240 31h10">
+</path>
+<path d="M80 31a10 10 0 0 0 -10 10v29a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M80 80h160">
+</path>
+</g>
+<path d="M240 80a10 10 0 0 0 10 -10v-29a10 10 0 0 0 -10 -10">
+</path>
+</g>
+<path d="M250 31h10">
+</path>
+</g>
+<path d="M260 31h20">
+</path>
+</g>
+<path d="M 280 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="NUMBER"><h4>NUMBER</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="321" height="71" viewBox="0 0 321 71">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M280 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h0">
+</path>
+<path d="M260 31h0">
+</path>
+<path d="M60 31h10">
+</path>
+<g>
+<path d="M70 31h0">
+</path>
+<path d="M250 31h0">
+</path>
+<path d="M70 31h10">
+</path>
+<g>
+<path d="M80 31h0">
+</path>
+<path d="M240 31h0">
+</path>
+<path d="M80 31h20">
+</path>
+<g>
+<path d="M100 31h0">
+</path>
+<path d="M220 31h0">
+</path>
+<path d="M100 31h10">
+</path>
+<g>
+<path d="M110 31h0">
+</path>
+<path d="M210 31h0">
+</path>
+<rect x="110" y="20" width="100" height="22" rx="10" ry="10">
+</rect>
+<text x="160" y="35">
+'0' .. '9'</text>
+</g>
+<path d="M210 31h10">
+</path>
+</g>
+<path d="M220 31h20">
+</path>
+</g>
+<path d="M240 31h10">
+</path>
+<path d="M80 31a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10">
+</path>
+<g>
+<path d="M80 51h160">
+</path>
+</g>
+<path d="M240 51a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10">
+</path>
+</g>
+<path d="M250 31h10">
+</path>
+</g>
+<path d="M260 31h20">
+</path>
+</g>
+<path d="M 280 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr><tr><td id="WS"><h4>WS</h4></td><td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="209" height="62" viewBox="0 0 209 62">
+<style type="text/css">svg.railroad-diagram {
+    background-color: hsl(30,20%,95%);
+}
+svg.railroad-diagram path {
+    stroke-width: 3;
+    stroke: black;
+    fill-opacity: 0;
+}
+svg.railroad-diagram text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+svg.railroad-diagram text.label {
+    text-anchor: start;
+}
+svg.railroad-diagram text.comment {
+    font: italic 12px monospace;
+}
+svg.railroad-diagram rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: #9db0e5;
+}
+svg.railroad-diagram rect[rx~="10"] {
+    fill: #c7a6d8;
+}</style>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5">
+</path>
+<g>
+<path d="M40 31h0">
+</path>
+<path d="M168 31h0">
+</path>
+<path d="M40 31h20">
+</path>
+<g>
+<path d="M60 31h0">
+</path>
+<path d="M148 31h0">
+</path>
+<path d="M60 31h10">
+</path>
+<g>
+<path d="M70 31h0">
+</path>
+<path d="M138 31h0">
+</path>
+<rect x="70" y="20" width="68" height="22" rx="10" ry="10">
+</rect>
+<text x="104" y="35">
+[ \r\n\t]</text>
+</g>
+<path d="M138 31h10">
+</path>
+</g>
+<path d="M148 31h20">
+</path>
+</g>
+<path d="M 168 31 h 20 m -10 -10 v 20 m 10 -20 v 20">
+</path>
+</g>
+</svg>
+</td></tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
