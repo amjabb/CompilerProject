@@ -1,5 +1,8 @@
-import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.*;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,13 +21,14 @@ public class Test
                                 ? new FileInputStream(inputFile)
                                 : System.in;
         
-        //ANTLRInputStream input = new ANTLRInputStream(is);
-        CompilerVisitor compiler = new CompilerVisitor();
-        compiler.visit(tree);
-        HelloLexer lexer = new HelloLexer(compiler);
+        ANTLRInputStream input = new ANTLRInputStream(is);
+        HelloLexer lexer = new HelloLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         HelloParser parser = new HelloParser(tokens);
         ParseTree tree = parser.program();
+
+        CompilerVisitor compiler = new CompilerVisitor();
+        compiler.visit(tree);
         
     }
 }

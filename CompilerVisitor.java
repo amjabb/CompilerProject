@@ -22,7 +22,7 @@ public class CompilerVisitor extends HelloBaseVisitor<Integer>
     }
     
     @Override 
-    public Integer visitProgram(PclParser.ProgramContext ctx) 
+    public Integer visitProgram(HelloParser.ProgramContext ctx) 
     { 
         System.out.println("Visiting program");
         Integer value = visitChildren(ctx); 
@@ -34,63 +34,63 @@ public class CompilerVisitor extends HelloBaseVisitor<Integer>
         return value;
     }
     
-    @Override 
-    public Integer visitHeader(PclParser.HeaderContext ctx) 
-    { 
-        String programName = ctx.IDENTIFIER().toString();
-        System.out.println("Program name = " + programName);
+    // @Override 
+    // public Integer visitHeader(PclParser.HeaderContext ctx) 
+    // { 
+    //     String programName = ctx.IDENTIFIER().toString();
+    //     System.out.println("Program name = " + programName);
         
-        programId = symTabStack.enterLocal(programName);
-        programId.setDefinition(DefinitionImpl.PROGRAM);
-        programId.setAttribute(ROUTINE_SYMTAB, symTabStack.push());
-        symTabStack.setProgramId(programId);
+    //     programId = symTabStack.enterLocal(programName);
+    //     programId.setDefinition(DefinitionImpl.PROGRAM);
+    //     programId.setAttribute(ROUTINE_SYMTAB, symTabStack.push());
+    //     symTabStack.setProgramId(programId);
         
-        return visitChildren(ctx); 
-    }
+    //     return visitChildren(ctx); 
+    // }
 
-    @Override 
-    public Integer visitDecl(PclParser.DeclContext ctx) 
-    { 
-        System.out.println("Visiting dcl");
-        return visitChildren(ctx); 
-    }
+    // @Override 
+    // public Integer visitDecl(PclParser.DeclContext ctx) 
+    // { 
+    //     System.out.println("Visiting dcl");
+    //     return visitChildren(ctx); 
+    // }
 
-    @Override 
-    public Integer visitVar_list(PclParser.Var_listContext ctx) 
-    { 
-        System.out.println("Visiting variable list");
-        variableIdList = new ArrayList<SymTabEntry>();
+    // @Override 
+    // public Integer visitVar_list(PclParser.Var_listContext ctx) 
+    // { 
+    //     System.out.println("Visiting variable list");
+    //     variableIdList = new ArrayList<SymTabEntry>();
         
-        return visitChildren(ctx);         
-    }
+    //     return visitChildren(ctx);         
+    // }
     
-    @Override 
-    public Integer visitVar_id(PclParser.Var_idContext ctx) 
-    { 
-        String variableName = ctx.IDENTIFIER().toString();
-        System.out.println("Declared Id = " + variableName);
+    // @Override 
+    // public Integer visitVar_id(PclParser.Var_idContext ctx) 
+    // { 
+    //     String variableName = ctx.IDENTIFIER().toString();
+    //     System.out.println("Declared Id = " + variableName);
         
-        SymTabEntry variableId = symTabStack.enterLocal(variableName);
-        variableId.setDefinition(VARIABLE);
-        variableIdList.add(variableId);
+    //     SymTabEntry variableId = symTabStack.enterLocal(variableName);
+    //     variableId.setDefinition(VARIABLE);
+    //     variableIdList.add(variableId);
         
-        return visitChildren(ctx); 
-    }
+    //     return visitChildren(ctx); 
+    // }
     
-    @Override 
-    public Integer visitType_id(PclParser.Type_idContext ctx) 
-    { 
-        String typeName = ctx.IDENTIFIER().toString();
-        System.out.println("Type = " + typeName);
+    // @Override 
+    // public Integer visitType_id(PclParser.Type_idContext ctx) 
+    // { 
+    //     String typeName = ctx.IDENTIFIER().toString();
+    //     System.out.println("Type = " + typeName);
         
-        dataType = typeName.equalsIgnoreCase("integer") 
-                            		? Predefined.integerType
-                 : typeName.equalsIgnoreCase("real")
-                             	? Predefined.realType
-                             	: null;
+    //     dataType = typeName.equalsIgnoreCase("integer") 
+    //                         		? Predefined.integerType
+    //              : typeName.equalsIgnoreCase("real")
+    //                          	? Predefined.realType
+    //                          	: null;
             
-        for (SymTabEntry id : variableIdList) id.setTypeSpec(dataType);
+    //     for (SymTabEntry id : variableIdList) id.setTypeSpec(dataType);
         
-        return visitChildren(ctx); 
-    }
+    //     return visitChildren(ctx); 
+    // }
 }
