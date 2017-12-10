@@ -175,6 +175,18 @@ public interface Pcl2Listener extends ParseTreeListener {
 	 */
 	void exitAddSubExpr(Pcl2Parser.AddSubExprContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code boolean}
+	 * labeled alternative in {@link Pcl2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolean(Pcl2Parser.BooleanContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code boolean}
+	 * labeled alternative in {@link Pcl2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolean(Pcl2Parser.BooleanContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code unsignedNumberExpr}
 	 * labeled alternative in {@link Pcl2Parser#expr}.
 	 * @param ctx the parse tree
@@ -286,4 +298,74 @@ public interface Pcl2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFloatConst(Pcl2Parser.FloatConstContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Pcl2Parser#compareOp}.
+	 * @param ctx the parse tree
+	 */
+	void enterCompareOp(Pcl2Parser.CompareOpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Pcl2Parser#compareOp}.
+	 * @param ctx the parse tree
+	 */
+	void exitCompareOp(Pcl2Parser.CompareOpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Pcl2Parser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void enterFactor(Pcl2Parser.FactorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Pcl2Parser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void exitFactor(Pcl2Parser.FactorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Pcl2Parser#string}.
+	 * @param ctx the parse tree
+	 */
+	void enterString(Pcl2Parser.StringContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Pcl2Parser#string}.
+	 * @param ctx the parse tree
+	 */
+	void exitString(Pcl2Parser.StringContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Pcl2Parser#writeStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterWriteStmt(Pcl2Parser.WriteStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Pcl2Parser#writeStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitWriteStmt(Pcl2Parser.WriteStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Pcl2Parser#compareStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterCompareStmt(Pcl2Parser.CompareStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Pcl2Parser#compareStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitCompareStmt(Pcl2Parser.CompareStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Pcl2Parser#ifStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfStmt(Pcl2Parser.IfStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Pcl2Parser#ifStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfStmt(Pcl2Parser.IfStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Pcl2Parser#whileStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileStmt(Pcl2Parser.WhileStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Pcl2Parser#whileStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileStmt(Pcl2Parser.WhileStmtContext ctx);
 }

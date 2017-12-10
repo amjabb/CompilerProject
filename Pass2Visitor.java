@@ -37,7 +37,7 @@ public class Pass2Visitor extends Pcl2BaseVisitor<Integer>
         jFile.println();
         jFile.println("\tnew RunTimer");
         jFile.println("\tdup");
-        jFile.println("\tinvokenonvirtual RunTimer/<init>()V");
+        jFile.println("\tinvokenonvirtual for/<init>()V");
         jFile.println("\tputstatic        " + programName + "/_runTimer LRunTimer;");
         jFile.println("\tnew PascalTextIn");
         jFile.println("\tdup");

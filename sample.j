@@ -3,15 +3,9 @@
 
 .field private static _runTimer LRunTimer;
 .field private static _standardIn LPascalTextIn;
-
-; i,j:integer
-
 .field private static i I
 .field private static j I
-
-; alpha,beta5x:real
-
-.field private static alpha F
+.field private static treasure F
 .field private static beta5x F
 
 .method public <init>()V
@@ -28,7 +22,7 @@
 
 	new RunTimer
 	dup
-	invokenonvirtual RunTimer/<init>()V
+	invokenonvirtual for/<init>()V
 	putstatic        sample/_runTimer LRunTimer;
 	new PascalTextIn
 	dup

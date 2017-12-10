@@ -112,6 +112,13 @@ public interface Pcl2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAddSubExpr(Pcl2Parser.AddSubExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code boolean}
+	 * labeled alternative in {@link Pcl2Parser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolean(Pcl2Parser.BooleanContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code unsignedNumberExpr}
 	 * labeled alternative in {@link Pcl2Parser#expr}.
 	 * @param ctx the parse tree
@@ -177,4 +184,46 @@ public interface Pcl2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFloatConst(Pcl2Parser.FloatConstContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Pcl2Parser#compareOp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCompareOp(Pcl2Parser.CompareOpContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Pcl2Parser#factor}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFactor(Pcl2Parser.FactorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Pcl2Parser#string}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitString(Pcl2Parser.StringContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Pcl2Parser#writeStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWriteStmt(Pcl2Parser.WriteStmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Pcl2Parser#compareStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCompareStmt(Pcl2Parser.CompareStmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Pcl2Parser#ifStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfStmt(Pcl2Parser.IfStmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Pcl2Parser#whileStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileStmt(Pcl2Parser.WhileStmtContext ctx);
 }
