@@ -5,24 +5,27 @@ grammar Pcl2;  // A tiny subset of Pascal
     import wci.intermediate.symtabimpl.*;
 }
 
-program   : header mainBlock;
-header    : PROGRAM IDENTIFIER;
+program   : header mainBlock '.' ;
+header    : PROGRAM IDENTIFIER ';' ;
 mainBlock : block;
-block     : declarations stmtList ;
+block     : declarations compoundStmt ;
 
-declarations : declList ;
-declList     : decl (  decl )* ;
+declarations : VAR declList ';' ;
+declList     : decl ( ';' decl )* ;
 decl         : varList ':' typeId ;
 varList      : varId ( ',' varId )* ;
 varId        : IDENTIFIER ;
 typeId       : IDENTIFIER ;
 
-stmt : assignmentStmt
+compoundStmt : BEGIN stmtList END ;
+
+stmt : compoundStmt
+     | assignmentStmt
      |
      ;
      
-stmtList       : stmt;
-assignmentStmt : variable 'duffle' expr ;
+stmtList       : stmt ( ';' stmt )* ;
+assignmentStmt : variable ':=' expr ;
 
 variable : IDENTIFIER ;
 
@@ -48,8 +51,10 @@ number locals [ TypeSpec type = null ]
     | FLOAT      # floatConst
     ;
 
-PROGRAM : 'avast' ;
-END     : 'blackspot' ;
+PROGRAM : 'PROGRAM' ;
+VAR     : 'VAR' ;
+BEGIN   : 'BEGIN' ;
+END     : 'END' ;
 
 IDENTIFIER : [a-zA-Z][a-zA-Z0-9]* ;
 INTEGER    : [0-9]+ ;

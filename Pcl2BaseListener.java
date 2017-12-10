@@ -139,6 +139,18 @@ public class Pcl2BaseListener implements Pcl2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCompoundStmt(Pcl2Parser.CompoundStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCompoundStmt(Pcl2Parser.CompoundStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStmt(Pcl2Parser.StmtContext ctx) { }
 	/**
 	 * {@inheritDoc}

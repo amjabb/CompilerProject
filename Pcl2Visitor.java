@@ -74,6 +74,12 @@ public interface Pcl2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTypeId(Pcl2Parser.TypeIdContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link Pcl2Parser#compoundStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCompoundStmt(Pcl2Parser.CompoundStmtContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link Pcl2Parser#stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

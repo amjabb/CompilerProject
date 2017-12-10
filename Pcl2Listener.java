@@ -111,6 +111,16 @@ public interface Pcl2Listener extends ParseTreeListener {
 	 */
 	void exitTypeId(Pcl2Parser.TypeIdContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link Pcl2Parser#compoundStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterCompoundStmt(Pcl2Parser.CompoundStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Pcl2Parser#compoundStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitCompoundStmt(Pcl2Parser.CompoundStmtContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link Pcl2Parser#stmt}.
 	 * @param ctx the parse tree
 	 */

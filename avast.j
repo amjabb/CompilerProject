@@ -4,16 +4,6 @@
 .field private static _runTimer LRunTimer;
 .field private static _standardIn LPascalTextIn;
 
-; i,j:integer
-
-.field private static i I
-.field private static j I
-
-; alpha,beta5x:real
-
-.field private static alpha F
-.field private static beta5x F
-
 .method public <init>()V
 
 	aload_0
@@ -34,56 +24,6 @@
 	dup
 	invokenonvirtual PascalTextIn/<init>()V
 	putstatic        avast/_standardIn LPascalTextIn;
-
-; i:=32
-
-	ldc	32
-	putstatic	avast/i I
-
-; j:=i
-
-	getstatic	avast/i I
-	putstatic	avast/j I
-
-; i:=-2+3*j
-
-	ldc	2
-	ineg
-	ldc	3
-	getstatic	avast/j I
-	imul
-	iadd
-	putstatic	avast/i I
-
-; alpha:=9.3
-
-	ldc	9.3
-	putstatic	avast/alpha F
-
-; beta5x:=alpha
-
-	getstatic	avast/alpha F
-	putstatic	avast/beta5x F
-
-; beta5x:=alpha/3.7-alpha*2.88
-
-	getstatic	avast/alpha F
-	ldc	3.7
-	fdiv
-	getstatic	avast/alpha F
-	ldc	2.88
-	fmul
-	fsub
-	putstatic	avast/beta5x F
-
-; beta5x:=8.45*(alpha+9.12)
-
-	ldc	8.45
-	getstatic	avast/alpha F
-	ldc	9.12
-	fadd
-	fmul
-	putstatic	avast/beta5x F
 
 	getstatic     avast/_runTimer LRunTimer;
 	invokevirtual RunTimer.printElapsedTime()V

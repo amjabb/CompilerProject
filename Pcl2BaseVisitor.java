@@ -90,6 +90,13 @@ public class Pcl2BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements P
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitCompoundStmt(Pcl2Parser.CompoundStmtContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitStmt(Pcl2Parser.StmtContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
