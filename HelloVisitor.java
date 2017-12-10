@@ -46,6 +46,12 @@ public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitWrite_stmt(HelloParser.Write_stmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link HelloParser#string}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitString(HelloParser.StringContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link HelloParser#id_list}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -58,17 +64,40 @@ public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpr_list(HelloParser.Expr_listContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link HelloParser#expr}.
+	 * Visit a parse tree produced by the {@code expr_compare}
+	 * labeled alternative in {@link HelloParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpr(HelloParser.ExprContext ctx);
+	T visitExpr_compare(HelloParser.Expr_compareContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link HelloParser#factor}.
+	 * Visit a parse tree produced by the {@code expr_factor}
+	 * labeled alternative in {@link HelloParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFactor(HelloParser.FactorContext ctx);
+	T visitExpr_factor(HelloParser.Expr_factorContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expr_math}
+	 * labeled alternative in {@link HelloParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpr_math(HelloParser.Expr_mathContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code id}
+	 * labeled alternative in {@link HelloParser#factor}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitId(HelloParser.IdContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code int}
+	 * labeled alternative in {@link HelloParser#factor}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInt(HelloParser.IntContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link HelloParser#integer}.
 	 * @param ctx the parse tree
@@ -88,11 +117,11 @@ public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCompare_stmt(HelloParser.Compare_stmtContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link HelloParser#operator}.
+	 * Visit a parse tree produced by {@link HelloParser#mathOp}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitOperator(HelloParser.OperatorContext ctx);
+	T visitMathOp(HelloParser.MathOpContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link HelloParser#ident}.
 	 * @param ctx the parse tree

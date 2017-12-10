@@ -67,6 +67,16 @@ public interface HelloListener extends ParseTreeListener {
 	 */
 	void exitWrite_stmt(HelloParser.Write_stmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link HelloParser#string}.
+	 * @param ctx the parse tree
+	 */
+	void enterString(HelloParser.StringContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link HelloParser#string}.
+	 * @param ctx the parse tree
+	 */
+	void exitString(HelloParser.StringContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link HelloParser#id_list}.
 	 * @param ctx the parse tree
 	 */
@@ -87,25 +97,65 @@ public interface HelloListener extends ParseTreeListener {
 	 */
 	void exitExpr_list(HelloParser.Expr_listContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link HelloParser#expr}.
+	 * Enter a parse tree produced by the {@code expr_compare}
+	 * labeled alternative in {@link HelloParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpr(HelloParser.ExprContext ctx);
+	void enterExpr_compare(HelloParser.Expr_compareContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link HelloParser#expr}.
+	 * Exit a parse tree produced by the {@code expr_compare}
+	 * labeled alternative in {@link HelloParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpr(HelloParser.ExprContext ctx);
+	void exitExpr_compare(HelloParser.Expr_compareContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link HelloParser#factor}.
+	 * Enter a parse tree produced by the {@code expr_factor}
+	 * labeled alternative in {@link HelloParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterFactor(HelloParser.FactorContext ctx);
+	void enterExpr_factor(HelloParser.Expr_factorContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link HelloParser#factor}.
+	 * Exit a parse tree produced by the {@code expr_factor}
+	 * labeled alternative in {@link HelloParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitFactor(HelloParser.FactorContext ctx);
+	void exitExpr_factor(HelloParser.Expr_factorContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expr_math}
+	 * labeled alternative in {@link HelloParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpr_math(HelloParser.Expr_mathContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expr_math}
+	 * labeled alternative in {@link HelloParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpr_math(HelloParser.Expr_mathContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code id}
+	 * labeled alternative in {@link HelloParser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void enterId(HelloParser.IdContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code id}
+	 * labeled alternative in {@link HelloParser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void exitId(HelloParser.IdContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code int}
+	 * labeled alternative in {@link HelloParser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void enterInt(HelloParser.IntContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code int}
+	 * labeled alternative in {@link HelloParser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void exitInt(HelloParser.IntContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link HelloParser#integer}.
 	 * @param ctx the parse tree
@@ -137,15 +187,15 @@ public interface HelloListener extends ParseTreeListener {
 	 */
 	void exitCompare_stmt(HelloParser.Compare_stmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link HelloParser#operator}.
+	 * Enter a parse tree produced by {@link HelloParser#mathOp}.
 	 * @param ctx the parse tree
 	 */
-	void enterOperator(HelloParser.OperatorContext ctx);
+	void enterMathOp(HelloParser.MathOpContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link HelloParser#operator}.
+	 * Exit a parse tree produced by {@link HelloParser#mathOp}.
 	 * @param ctx the parse tree
 	 */
-	void exitOperator(HelloParser.OperatorContext ctx);
+	void exitMathOp(HelloParser.MathOpContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link HelloParser#ident}.
 	 * @param ctx the parse tree

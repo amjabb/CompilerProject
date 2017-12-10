@@ -7,93 +7,118 @@ program
 
 
 stmt_list
-   : stmt_list stmt
-   | stmt
+   : stmt +           
+//   | stmt_list                
    ;
 
 stmt
-   : assign_stmt
-   | read_stmt
-   | write_stmt
-   | if_stmt
-   | while_stmt
-   | compare_stmt
+   : assign_stmt        
+   | read_stmt          
+   | write_stmt         
+   | if_stmt            
+   | while_stmt         
+   | compare_stmt       
    ;
 
 assign_stmt
-   : ident 'duffle' expr
+   : ident 'duffle' expr 
    ;
 
 read_stmt
-   : 'ahoy' id_list
+   : 'YoHoHo' id_list        
    ;
 
 write_stmt
-   : 'feedTheFish' expr_list
+   : 'feedTheFish' '(' (((string | ident) ',')*  (string | ident)) ')'   
    ;
 
-id_list
-   : id_list ',' ident
-   | ident
+string
+   : '\'' factor* '\''
+   ;
+
+
+
+id_list  
+   : id_list ',' ident           
+   | ident                       
    ;
 
 expr_list
-   : expr_list ',' expr
-   | expr
+   : expr_list ',' expr          
+   | expr                          
    ;
 
 expr
-   : expr operator factor
-   | factor
-   | expr compare_op expr
+   : expr mathOp expr            #expr_math
+   | factor                      #expr_factor
+   | expr compare_op expr        #expr_compare
    ;
 
 factor
-   : ident
-   | integer
+   : ident                       #id      
+   | integer                     #int
    ;
 
 integer
-   : '-'? NUMBER
+   : '-'? NUMBER                 
    ;
 
 compare_op
-   : '=='
-   | '<'
-   | '>'
-   | '>='
-   | '<='
+   : '=='                        
+   | '<'                         
+   | '>'                         
+   | '>='                        
+   | '<='                        
    ;
 
 compare_stmt
-	: expr compare_op expr
-	;
+   : expr compare_op expr       
+   ;
 
-operator
-   : 'booty' 		// add
-   | 'pillage'      // subtract 
+mathOp
+   : 'booty'                     
+   | 'pillage'                   
    ;
 
 ident
-   : ID
+   : ID                         
    ;
    
 if_stmt
-    :   'ahoy' '(' expr ')' stmt ('ahoyMatey' stmt)?
+    :   IF_TOKEN '(' expr ')' stmt ('ahoyMatey' stmt)?    
     ;
     
 while_stmt
-    :   'swabTheDeck' '(' expr ')' stmt
+    :   'swabTheDeck' '(' expr ')' stmt                 
     ;
     
-ID
-   : ('a' .. 'z' | 'A' .. 'Z')+
-   ;
 
-NUMBER
-   : ('0' .. '9')+
-   ;
 
-WS
-   : [ \r\n\t] -> skip
-   ;
+//TOKEN NAMES
+ID         : ('a' .. 'z' | 'A' .. 'Z')+      ;
+NUMBER     : ('0' .. '9')+                   ;
+WS         : [ \r\n\t] -> skip               ;
+ADD        : 'booty'                         ;
+SUB        : 'pillage'                       ;
+WRITE      : 'feedTheFish'                   ;
+READ       : 'YoHoHo'                        ;
+ASSIGN     : 'duffle'                        ;
+PROG_START : 'avast'                         ;
+PROG_END   : 'blackSpot'                     ;
+OP_COMPARE : '=='                            ;
+OP_LT      : '<'                             ;
+OP_GT      : '>'                             ;
+OP_GTEQ    : '>='                            ;
+OP_LTEQ    : '<='                            ;
+COMMA      : ','                             ;
+DASH       : '-'                             ;
+LPAREN     : '('                             ;
+RPAREN     : ')'                             ;
+IF_TOKEN   : 'ahoy'                          ;
+ELSE_TOKEN : 'ahoyMatey'                     ;
+WHILE_TOKEN: 'swabTheDeck'                   ;
+
+
+
+
+

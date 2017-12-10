@@ -27,8 +27,13 @@ public class Test
         HelloParser parser = new HelloParser(tokens);
         ParseTree tree = parser.program();
 
-        CompilerVisitor compiler = new CompilerVisitor();
-        compiler.visit(tree);
+        Pass1Visitor pass1 = new Pass1Visitor();
+        pass1.visit(tree);
+        
+        PrintWriter jFile = pass1.getAssemblyFile();
+
+        Pass2Visitor pass2 = new Pass2Visitor(jFile);
+        pass2.visit(tree);
         
     }
 }
