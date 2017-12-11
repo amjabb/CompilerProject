@@ -296,4 +296,24 @@ public interface Pcl2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFloatConst(Pcl2Parser.FloatConstContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Pcl2Parser#writeStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterWriteStmt(Pcl2Parser.WriteStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Pcl2Parser#writeStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitWriteStmt(Pcl2Parser.WriteStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Pcl2Parser#string}.
+	 * @param ctx the parse tree
+	 */
+	void enterString(Pcl2Parser.StringContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Pcl2Parser#string}.
+	 * @param ctx the parse tree
+	 */
+	void exitString(Pcl2Parser.StringContext ctx);
 }

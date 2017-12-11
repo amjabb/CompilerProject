@@ -338,6 +338,30 @@ public class Pcl2BaseListener implements Pcl2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFloatConst(Pcl2Parser.FloatConstContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWriteStmt(Pcl2Parser.WriteStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWriteStmt(Pcl2Parser.WriteStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterString(Pcl2Parser.StringContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitString(Pcl2Parser.StringContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

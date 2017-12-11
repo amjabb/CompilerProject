@@ -3,6 +3,8 @@ import java.io.PrintWriter;
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 
+import java.util.Arrays;
+
 public class Pass2Visitor extends Pcl2BaseVisitor<Integer> 
 {
     String programName;
@@ -202,4 +204,23 @@ public class Pass2Visitor extends Pcl2BaseVisitor<Integer>
         
         return visitChildren(ctx); 
     }
+
+    @Override 
+    public Integer visitWriteStmt(Pcl2Parser.WriteStmtContext ctx) 
+    { 
+        System.out.println("HERREEEEE" + ctx.string());
+        jFile.println("\t.limit stack          2");
+        jFile.println("\t.limit locals         1");
+        jFile.println("\t.line                 6");
+        jFile.println("\tgetstatic             java/lang/System/out Ljava/io/PrintStream;");
+        jFile.println("\tldc                   \"HI\"");
+        jFile.println("\tinvokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
+        jFile.println("\t.line                 8");
+        jFile.println("\treturn");
+        jFile.println("\t.throws               java/lang/Exception");
+        return visitChildren(ctx); 
+    }
+
+
+
 }

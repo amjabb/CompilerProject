@@ -243,4 +243,10 @@ public class Pass1Visitor extends Pcl2BaseVisitor<Integer>
         ctx.type = ctx.expr().type;
         return value;
     }
+
+    @Override 
+    public Integer visitString(Pcl2Parser.StringContext ctx) 
+    { 
+        return visitChildren(ctx); 
+    }
 }

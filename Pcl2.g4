@@ -21,7 +21,7 @@ compoundStmt : BEGIN stmtList END ;
 
 stmt : compoundStmt
      | assignmentStmt
-     |
+     | writeStmt
      ;
      
 stmtList       : stmt ( ';' stmt )* ;
@@ -50,6 +50,14 @@ number locals [ TypeSpec type = null ]
     : INTEGER    # integerConst
     | FLOAT      # floatConst
     ;
+
+writeStmt
+   : 'feedTheFish' '(' (string) ')'   
+   ;
+
+string
+   : '\'' ('\'\'' | ~ ('\''))* '\''
+   ;
 
 PROGRAM : 'PROGRAM' ;
 VAR     : 'VAR' ;

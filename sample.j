@@ -85,6 +85,18 @@
 	fmul
 	putstatic	sample/beta5x F
 
+; feedTheFish('treasure')
+
+	.limit stack          2
+	.limit locals         1
+	.line                 6
+	getstatic             java/lang/System/out Ljava/io/PrintStream;
+	ldc                   "HI"
+	invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V
+	.line                 8
+	return
+	.throws               java/lang/Exception
+
 	getstatic     sample/_runTimer LRunTimer;
 	invokevirtual RunTimer.printElapsedTime()V
 

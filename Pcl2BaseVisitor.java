@@ -203,4 +203,18 @@ public class Pcl2BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements P
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitFloatConst(Pcl2Parser.FloatConstContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitWriteStmt(Pcl2Parser.WriteStmtContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitString(Pcl2Parser.StringContext ctx) { return visitChildren(ctx); }
 }

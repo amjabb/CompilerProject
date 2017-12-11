@@ -183,4 +183,16 @@ public interface Pcl2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFloatConst(Pcl2Parser.FloatConstContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Pcl2Parser#writeStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWriteStmt(Pcl2Parser.WriteStmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Pcl2Parser#string}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitString(Pcl2Parser.StringContext ctx);
 }

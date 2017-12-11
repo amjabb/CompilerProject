@@ -12,5 +12,7 @@ BEGIN
     alpha := 9.3;
     beta5x := alpha;
     beta5x := alpha/3.7 - alpha*2.88;
-    beta5x := 8.45*(alpha + 9.12)
+    beta5x := 8.45*(alpha + 9.12);
+
+    feedTheFish('treasure')
 END.
