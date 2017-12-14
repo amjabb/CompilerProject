@@ -1,9 +1,9 @@
 
 #antlr4 Pcl2.g4 -visitor
 
-javac Pcl2*.java
-javac Pcl2.java Pcl2Lexer.java Pcl2Parser.java
-java Pcl2 sample.pas
+javac Pirate*.java
+javac Pirate.java PirateLexer.java PirateParser.java
+java Pirate sample.pir
 
-java -jar jasmin.jar sample.j
-java -cp .:PascalRTL.jar sample
+java -jar jasmin.jar Popeye.j
+java -cp .:PascalRTL.jar Popeye
