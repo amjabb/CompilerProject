@@ -208,7 +208,6 @@ public class Pass2Visitor extends Pcl2BaseVisitor<Integer>
     @Override 
     public Integer visitWriteStmt(Pcl2Parser.WriteStmtContext ctx) 
     { 
-        System.out.println("HERREEEEE" + ctx.string());
         jFile.println("\t.limit stack          2");
         jFile.println("\t.limit locals         1");
         jFile.println("\t.line                 6");
