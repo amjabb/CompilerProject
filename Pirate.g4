@@ -12,12 +12,13 @@ mainBlock: stmt_list;
 footer  : '}' END;
 
 stmt_list
-   : stmt ( ';' stmt )* ;   
+   : stmt ';' ( stmt ';')* ;   
 
 stmt
-   : assign_stmt
+   :  if_stmt
+   | assign_stmt
    | write_stmt  
-   | compare_stmt           
+   | while_stmt           
    ;
 
 assign_stmt
@@ -28,24 +29,21 @@ assign_stmt
 expr locals [ TypeSpec type = null ]
     : expr mul_div_op expr   # mulDivExpr
     | expr add_sub_op expr   # addSubExpr
+    | expr compare_op expr  # compareOpExpr
     | number               # unsignedNumberExpr
     | variable             # variableExpr
-    | '(' expr ')'         # parenExpr
     ;
      
 mul_div_op: MUL_OP | DIV_OP;
 add_sub_op: ADD_OP | SUB_OP;
 
-compare_stmt
-   : expr compare_op expr       
-   ;
 
 if_stmt
-    :   IF_TOKEN '(' compare_stmt ')' stmt_list (ELSE_TOKEN stmt_list)?    
+    :   IF_TOKEN '(' expr ')' stmt_list (ELSE_TOKEN stmt_list)?    
     ;
     
 while_stmt
-    :   WHILE_TOKEN '(' compare_stmt ')' stmt_list              
+    :   WHILE_TOKEN '(' expr ')' stmt_list              
     ;
 
 variable : IDENTIFIER ;

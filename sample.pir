@@ -1,4 +1,9 @@
 avast Popeye {
 tom duffle 4;
-feedTheFish('sara is cool')
+bob duffle 0;
+
+
+ahoy(bob<tom) will duffle 3;
+
+
 } blackspot

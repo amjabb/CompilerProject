@@ -128,6 +128,10 @@ public class Pass2Visitor extends PirateBaseVisitor<Integer>
     @Override 
     public Integer visitIf_stmt(PirateParser.If_stmtContext ctx)
     { 
+        Integer value = visitChildren(ctx);//load both operators on the stack
+
+        //compare the two execute stmt list branch
+
         return visitChildren(ctx); 
     }
 

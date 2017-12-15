@@ -90,14 +90,14 @@ public class PirateBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMulDivExpr(PirateParser.MulDivExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCompareOpExpr(PirateParser.CompareOpExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitParenExpr(PirateParser.ParenExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMulDivExpr(PirateParser.MulDivExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -112,13 +112,6 @@ public class PirateBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitAdd_sub_op(PirateParser.Add_sub_opContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitCompare_stmt(PirateParser.Compare_stmtContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

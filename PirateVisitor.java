@@ -77,19 +77,19 @@ public interface PirateVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitUnsignedNumberExpr(PirateParser.UnsignedNumberExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code compareOpExpr}
+	 * labeled alternative in {@link PirateParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCompareOpExpr(PirateParser.CompareOpExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code mulDivExpr}
 	 * labeled alternative in {@link PirateParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitMulDivExpr(PirateParser.MulDivExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code parenExpr}
-	 * labeled alternative in {@link PirateParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParenExpr(PirateParser.ParenExprContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PirateParser#mul_div_op}.
 	 * @param ctx the parse tree
@@ -102,12 +102,6 @@ public interface PirateVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAdd_sub_op(PirateParser.Add_sub_opContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link PirateParser#compare_stmt}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCompare_stmt(PirateParser.Compare_stmtContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PirateParser#if_stmt}.
 	 * @param ctx the parse tree
