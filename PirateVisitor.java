@@ -1,4 +1,4 @@
-// Generated from Pirate.g4 by ANTLR 4.7
+// Generated from Pirate.g4 by ANTLR 4.7.1
 
     import wci.intermediate.*;
     import wci.intermediate.symtabimpl.*;
@@ -116,6 +116,12 @@ public interface PirateVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitWrite_stmt(PirateParser.Write_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PirateParser#output}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOutput(PirateParser.OutputContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PirateParser#string}.
 	 * @param ctx the parse tree

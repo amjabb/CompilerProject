@@ -1,4 +1,4 @@
-// Generated from Pirate.g4 by ANTLR 4.7
+// Generated from Pirate.g4 by ANTLR 4.7.1
 
     import wci.intermediate.*;
     import wci.intermediate.symtabimpl.*;
@@ -126,6 +126,13 @@ public class PirateBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitWrite_stmt(PirateParser.Write_stmtContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitOutput(PirateParser.OutputContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

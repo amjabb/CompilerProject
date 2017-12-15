@@ -34,13 +34,13 @@
 	ldc	4
 	putstatic	Popeye/tom I
 
-; feedTheFish(tom)
+; feedTheFish('sara')
 
 	.limit stack          2
 	.limit locals         1
 	.line                 6
 	getstatic             java/lang/System/out Ljava/io/PrintStream;
-	getstatic	Popeye/tom I
+	ldc                   "'sara'"
 	invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V
 	.line                 8
 	return

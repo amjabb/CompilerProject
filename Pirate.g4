@@ -39,7 +39,7 @@ number locals [ TypeSpec type = null ]
       | FLOAT # floatConst;
 
 write_stmt
-      : 'feedTheFish' '(' ouput ')';
+      : 'feedTheFish' '(' output ')';
 
 output: string | variable | ;
 
@@ -68,7 +68,6 @@ OP_GT      : '>'                             ;
 OP_GTEQ    : '>='                            ;
 OP_LTEQ    : '<='                            ;
 COMMA      : ','                             ;
-DASH       : '-'                             ;
 IF_TOKEN   : 'ahoy'                          ;
 ELSE_TOKEN : 'ahoyMatey'                     ;
 WHILE_TOKEN: 'swabTheDeck'                   ;

@@ -110,8 +110,8 @@ public class Pass2Visitor extends PirateBaseVisitor<Integer>
     @Override 
     public Integer visitWrite_stmt(PirateParser.Write_stmtContext ctx) 
     {   
-        if(false){
-            String valueStr = ctx.string().getText();
+        if(true){
+            String valueStr = ctx.output().string().getText();
             jFile.println("\t.limit stack          2");
             jFile.println("\t.limit locals         1");
             jFile.println("\t.line                 6");
@@ -122,18 +122,18 @@ public class Pass2Visitor extends PirateBaseVisitor<Integer>
             jFile.println("\treturn");
             jFile.println("\t.throws               java/lang/Exception");
         } else {
-            String value = ctx.variable().IDENTIFIER().toString(); 
-            jFile.println("\t.limit stack          2");
-            jFile.println("\t.limit locals         1");
-            jFile.println("\t.line                 6");
-            jFile.println("\tgetstatic             java/lang/System/out Ljava/io/PrintStream;");
-            jFile.println("\tgetstatic\t" + programName
-                           +  "/" + value
-                           + " I");
-            jFile.println("\tinvokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
-            jFile.println("\t.line                 8");
-            jFile.println("\treturn");
-            jFile.println("\t.throws               java/lang/Exception");
+            // String value = ctx.variable().IDENTIFIER().toString(); 
+            // jFile.println("\t.limit stack          2");
+            // jFile.println("\t.limit locals         1");
+            // jFile.println("\t.line                 6");
+            // jFile.println("\tgetstatic             java/lang/System/out Ljava/io/PrintStream;");
+            // jFile.println("\tgetstatic\t" + programName
+            //                +  "/" + value
+            //                + " I");
+            // jFile.println("\tinvokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
+            // jFile.println("\t.line                 8");
+            // jFile.println("\treturn");
+            // jFile.println("\t.throws               java/lang/Exception");
         }
         
 
