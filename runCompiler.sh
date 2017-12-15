@@ -1,9 +1,7 @@
 
-#antlr4 Pcl2.g4 -visitor
+javac Business*.java
+javac Business.java BusinessLexer.java BusinessParser.java
+java Business sample.biz
 
-javac Pirate*.java
-javac Pirate.java PirateLexer.java PirateParser.java
-java Pirate sample.pir
-
-java -jar jasmin.jar Popeye.j
-java -cp .:PascalRTL.jar Popeye
+java -jar jasmin.jar sample.j
+java -cp .:PascalRTL.jar sample
