@@ -1,0 +1,27 @@
+PROGRAM sample;
+
+VAR
+    i, j, k : integer;
+    alpha, beta5x : real;
+    
+BEGIN
+    i := 32;
+    j := i;
+    i := -2 + 3*j;
+
+    //Im using the same labels so it jumps to the while statement
+    IF i < j THEN i := 1; 
+
+    alpha := 9.3;
+    beta5x := alpha;
+    beta5x := alpha/3.7 - alpha*2.88;
+    beta5x := 8.45*(alpha + 9.12);
+
+    i := 0;
+
+    // This only works with one statement
+    WHILE i < 10 DO i := i + 1;
+
+    PRINT(i)
+
+END.

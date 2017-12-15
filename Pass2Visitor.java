@@ -3,9 +3,7 @@ import java.io.PrintWriter;
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 
-import java.util.Arrays;
-
-public class Pass2Visitor extends PirateBaseVisitor<Integer> 
+public class Pass2Visitor extends BusinessBaseVisitor<Integer> 
 {
     String programName;
     private PrintWriter jFile;
@@ -16,23 +14,22 @@ public class Pass2Visitor extends PirateBaseVisitor<Integer>
     }
     
     @Override 
-    public Integer visitProgram(PirateParser.ProgramContext ctx) 
+    public Integer visitProgram(BusinessParser.ProgramContext ctx) 
     { 
-
         Integer value = visitChildren(ctx); 
         jFile.close();
         return value;
     }
-
+    
     @Override 
-    public Integer visitHeader(PirateParser.HeaderContext ctx) 
+    public Integer visitHeader(BusinessParser.HeaderContext ctx) 
     { 
         programName = ctx.IDENTIFIER().toString();       
         return visitChildren(ctx); 
     }
-
+    
     @Override 
-    public Integer visitMainBlock(PirateParser.MainBlockContext ctx) 
+    public Integer visitMainBlock(BusinessParser.MainBlockContext ctx) 
     { 
         // Emit the main program header.
         jFile.println();
@@ -63,23 +60,21 @@ public class Pass2Visitor extends PirateBaseVisitor<Integer>
         return value;
     }
 
-
     @Override 
-    public Integer visitStmt(PirateParser.StmtContext ctx) 
+    public Integer visitStmt(BusinessParser.StmtContext ctx) 
     { 
         jFile.println("\n; " + ctx.getText() + "\n");
         
         return visitChildren(ctx); 
     }
-
     @Override 
-    public Integer visitAssign_stmt(PirateParser.Assign_stmtContext ctx)
+    public Integer visitAssignmentStmt(BusinessParser.AssignmentStmtContext ctx)
     {
         Integer value = visit(ctx.expr());
         
         String typeIndicator = (ctx.expr().type == Predefined.integerType) ? "I"
                              : (ctx.expr().type == Predefined.realType)    ? "F"
-                             :                                    "I";
+                             :                                    "?";
         
         // Emit a field put instruction.
         jFile.println("\tputstatic\t" + programName
@@ -90,190 +85,229 @@ public class Pass2Visitor extends PirateBaseVisitor<Integer>
     }
 
     @Override 
-    public Integer visitIntegerConst(PirateParser.IntegerConstContext ctx)
+    public Integer visitAddSubExpr(BusinessParser.AddSubExprContext ctx)
     {
-        // Emit a load constant instruction.
-        jFile.println("\tldc\t" + ctx.getText());
+        Integer value = visitChildren(ctx);
+                        
+        TypeSpec type1 = ctx.expr(0).type;
+        TypeSpec type2 = ctx.expr(1).type;
         
-        return visitChildren(ctx); 
-    }
-
-    @Override 
-    public Integer visitFloatConst(PirateParser.FloatConstContext ctx)
-    {
-        // Emit a load constant instruction.
-        jFile.println("\tldc\t" + ctx.getText());
+        boolean integerMode =    (type1 == Predefined.integerType)
+                              && (type2 == Predefined.integerType);
+        boolean realMode    =    (type1 == Predefined.realType)
+                              && (type2 == Predefined.realType);
         
-        return visitChildren(ctx); 
-    }
+        String op = ctx.addSubOp().getText();
+        String opcode;
 
-    @Override 
-    public Integer visitWrite_stmt(PirateParser.Write_stmtContext ctx) 
-    {   
-        if(true){
-            String valueStr = ctx.output().string().getText();
-            jFile.println("\t.limit stack          2");
-            jFile.println("\t.limit locals         1");
-            jFile.println("\t.line                 6");
-            jFile.println("\tgetstatic             java/lang/System/out Ljava/io/PrintStream;");
-            jFile.println("\tldc                   \"" + valueStr + "\"");
-            jFile.println("\tinvokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
-            jFile.println("\t.line                 8");
-            jFile.println("\treturn");
-            jFile.println("\t.throws               java/lang/Exception");
-        } else {
-            // String value = ctx.variable().IDENTIFIER().toString(); 
-            // jFile.println("\t.limit stack          2");
-            // jFile.println("\t.limit locals         1");
-            // jFile.println("\t.line                 6");
-            // jFile.println("\tgetstatic             java/lang/System/out Ljava/io/PrintStream;");
-            // jFile.println("\tgetstatic\t" + programName
-            //                +  "/" + value
-            //                + " I");
-            // jFile.println("\tinvokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
-            // jFile.println("\t.line                 8");
-            // jFile.println("\treturn");
-            // jFile.println("\t.throws               java/lang/Exception");
+        if (op.equals("+")) {
+            opcode = integerMode ? "iadd"
+                   : realMode    ? "fadd"
+                   :               "????";
+        }
+        else {
+            opcode = integerMode ? "isub"
+                   : realMode    ? "fsub"
+                   :               "????";
         }
         
+        // Emit an add or subtract instruction.
+        jFile.println("\t" + opcode);
+        
+        return value; 
+    }
 
+    @Override 
+    public Integer visitMulDivExpr(BusinessParser.MulDivExprContext ctx)
+    {
+        Integer value = visitChildren(ctx);
+                
+        TypeSpec type1 = ctx.expr(0).type;
+        TypeSpec type2 = ctx.expr(1).type;
+        
+        boolean integerMode =    (type1 == Predefined.integerType)
+                              && (type2 == Predefined.integerType);
+        boolean realMode    =    (type1 == Predefined.realType)
+                              && (type2 == Predefined.realType);
+        
+        String op = ctx.mulDivOp().getText();
+        String opcode;
+
+        if (op.equals("*")) {
+            opcode = integerMode ? "imul"
+                   : realMode    ? "fmul"
+                   :               "f???";
+        }
+        else {
+            opcode = integerMode ? "idiv"
+                   : realMode    ? "fdiv"
+                   :               "????";
+        }
+        
+        // Emit a multiply or divide instruction.
+        jFile.println("\t" + opcode);
+        
+        return value; 
+    }
+
+    @Override 
+    public Integer visitVariableExpr(BusinessParser.VariableExprContext ctx)
+    {
+        String variableName = ctx.variable().IDENTIFIER().toString();
+        TypeSpec type = ctx.type;
+        
+        String typeIndicator = (type == Predefined.integerType) ? "I"
+                             : (type == Predefined.realType)    ? "F"
+                             :                                    "?";
+        
+        // Emit a field get instruction.
+        jFile.println("\tgetstatic\t" + programName +
+                      "/" + variableName + " " + typeIndicator);
+        
+        return visitChildren(ctx); 
+    }
+    
+    @Override 
+    public Integer visitSignedNumber(BusinessParser.SignedNumberContext ctx)
+    {
+        Integer value = visitChildren(ctx);         
+        TypeSpec type = ctx.number().type;
+        
+        if (ctx.sign().getChild(0) == ctx.sign().SUB_OP()) {
+            String opcode = (type == Predefined.integerType) ? "ineg"
+                          : (type == Predefined.realType)    ? "fneg"
+                          :                                    "?neg";
+            
+            // Emit a negate instruction.
+            jFile.println("\t" + opcode);
+        }
+        
+        return value;
+    }
+
+    @Override 
+    public Integer visitIntegerConst(BusinessParser.IntegerConstContext ctx)
+    {
+        // Emit a load constant instruction.
+        jFile.println("\tldc\t" + ctx.getText());
         
         return visitChildren(ctx); 
     }
 
-    // @Override 
-    // public Integer visitAddSubExpr(Pcl2Parser.AddSubExprContext ctx)
-    // {
-    //     Integer value = visitChildren(ctx);
-                        
-    //     TypeSpec type1 = ctx.expr(0).type;
-    //     TypeSpec type2 = ctx.expr(1).type;
+    @Override 
+    public Integer visitFloatConst(BusinessParser.FloatConstContext ctx)
+    {
+        // Emit a load constant instruction.
+        jFile.println("\tldc\t" + ctx.getText());
         
-    //     boolean integerMode =    (type1 == Predefined.integerType)
-    //                           && (type2 == Predefined.integerType);
-    //     boolean realMode    =    (type1 == Predefined.realType)
-    //                           && (type2 == Predefined.realType);
-        
-    //     String op = ctx.addSubOp().getText();
-    //     String opcode;
+        return visitChildren(ctx); 
+    }
 
-    //     if (op.equals("+")) {
-    //         opcode = integerMode ? "iadd"
-    //                : realMode    ? "fadd"
-    //                :               "????";
-    //     }
-    //     else {
-    //         opcode = integerMode ? "isub"
-    //                : realMode    ? "fsub"
-    //                :               "????";
-    //     }
-        
-    //     // Emit an add or subtract instruction.
-    //     jFile.println("\t" + opcode);
-        
-    //     return value; 
-    // }
+    @Override 
+    public Integer visitStringExpr(BusinessParser.StringExprContext ctx) 
+    { 
+        String valueStr = ctx.string().getText();
+        jFile.println("\tldc                   \"" + valueStr + "\"");
+        return visitChildren(ctx); 
+    }
 
-    // @Override 
-    // public Integer visitMulDivExpr(Pcl2Parser.MulDivExprContext ctx)
-    // {
-    //     Integer value = visitChildren(ctx);
-                
-    //     TypeSpec type1 = ctx.expr(0).type;
-    //     TypeSpec type2 = ctx.expr(1).type;
-        
-    //     boolean integerMode =    (type1 == Predefined.integerType)
-    //                           && (type2 == Predefined.integerType);
-    //     boolean realMode    =    (type1 == Predefined.realType)
-    //                           && (type2 == Predefined.realType);
-        
-    //     String op = ctx.mulDivOp().getText();
-    //     String opcode;
+    @Override 
+    public Integer visitCompareExpr(BusinessParser.CompareExprContext ctx) 
+    { 
+        Integer value = visitChildren(ctx);
 
-    //     if (op.equals("*")) {
-    //         opcode = integerMode ? "imul"
-    //                : realMode    ? "fmul"
-    //                :               "f???";
-    //     }
-    //     else {
-    //         opcode = integerMode ? "idiv"
-    //                : realMode    ? "fdiv"
-    //                :               "????";
-    //     }
-        
-    //     // Emit a multiply or divide instruction.
-    //     jFile.println("\t" + opcode);
-        
-    //     return value; 
-    // }
+        TypeSpec type1 = ctx.expr(0).type;
+        TypeSpec type2 = ctx.expr(1).type;
 
-    // @Override 
-    // public Integer visitVariableExpr(Pcl2Parser.VariableExprContext ctx)
-    // {
-    //     String variableName = ctx.variable().IDENTIFIER().toString();
-    //     TypeSpec type = ctx.type;
-        
-    //     String typeIndicator = (type == Predefined.integerType) ? "I"
-    //                          : (type == Predefined.realType)    ? "F"
-    //                          :                                    "?";
-        
-    //     // Emit a field get instruction.
-    //     jFile.println("\tgetstatic\t" + programName +
-    //                   "/" + variableName + " " + typeIndicator);
-        
-    //     return visitChildren(ctx); 
-    // }
-    
-    // @Override 
-    // public Integer visitSignedNumber(Pcl2Parser.SignedNumberContext ctx)
-    // {
-    //     Integer value = visitChildren(ctx);         
-    //     TypeSpec type = ctx.number().type;
-        
-    //     if (ctx.sign().getChild(0) == ctx.sign().SUB_OP()) {
-    //         String opcode = (type == Predefined.integerType) ? "ineg"
-    //                       : (type == Predefined.realType)    ? "fneg"
-    //                       :                                    "?neg";
-            
-    //         // Emit a negate instruction.
-    //         jFile.println("\t" + opcode);
-    //     }
-        
-    //     return value;
-    // }
+        boolean integerMode =    (type1 == Predefined.integerType)
+                              && (type2 == Predefined.integerType);
+        boolean realMode    =    (type1 == Predefined.realType)
+                              && (type2 == Predefined.realType);
 
-    // @Override 
-    // public Integer visitIntegerConst(Pcl2Parser.IntegerConstContext ctx)
-    // {
-    //     // Emit a load constant instruction.
-    //     jFile.println("\tldc\t" + ctx.getText());
-        
-    //     return visitChildren(ctx); 
-    // }
+        String op = ctx.compareOp().getText();
+        String op_code = "";
 
-    // @Override 
-    // public Integer visitFloatConst(Pcl2Parser.FloatConstContext ctx)
-    // {
-    //     // Emit a load constant instruction.
-    //     jFile.println("\tldc\t" + ctx.getText());
-        
-    //     return visitChildren(ctx); 
-    // }
+        switch(op){
+            case "<":
+                op_code = "if_icmplt L002";
+                break;
+            case ">":
+                op_code = "if_icmpgt L002";
+                break;
+            case ">=":
+                op_code = "if_icmpge L002";
+                break;
+            case "<=":
+                op_code = "if_icmple L002";
+                break;
+            case "==":
+                op_code = "if_icmpeq L002";
+                break;
+            case "!=":
+                op_code = "if_icmpne L002";
+                break;
+        }
+        jFile.println("\t" + op_code);
+        return value; 
+    }
 
-    // @Override 
-    // public Integer visitWriteStmt(Pcl2Parser.WriteStmtContext ctx) 
-    // { 
-    //     jFile.println("\t.limit stack          2");
-    //     jFile.println("\t.limit locals         1");
-    //     jFile.println("\t.line                 6");
-    //     jFile.println("\tgetstatic             java/lang/System/out Ljava/io/PrintStream;");
-    //     jFile.println("\tldc                   \"HI\"");
-    //     jFile.println("\tinvokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
-    //     jFile.println("\t.line                 8");
-    //     jFile.println("\treturn");
-    //     jFile.println("\t.throws               java/lang/Exception");
-    //     return visitChildren(ctx); 
-    // }
+
+    @Override 
+    public Integer visitIfStatement(BusinessParser.IfStatementContext ctx) 
+    { 
+        Integer value = visit(ctx.expr());
+        jFile.println("\ticonst_0");
+        jFile.println("\tgoto L003");
+        jFile.println("\tL002:");
+        jFile.println("\ticonst_1");
+        jFile.println("\tL003:");
+        jFile.println("\tifeq L001");
+        value = visitChildren(ctx.stmt(0));
+        jFile.println("\tL001:");
+        return value; 
+    }
+
+    @Override 
+    public Integer visitWhileStatement(BusinessParser.WhileStatementContext ctx) 
+    { 
+        jFile.println("\tW001:");
+        Integer value = visit(ctx.expr());
+        jFile.println("\ticonst_0");
+        jFile.println("\tgoto W003");
+        jFile.println("\tL002:");
+        value = visit(ctx.stmt());
+        jFile.println("\tgoto W001");
+        jFile.println("\tW003:");
+
+        return value; 
+    }
+
+
+
+    @Override 
+    public Integer visitPrintStmt(BusinessParser.PrintStmtContext ctx) 
+    { 
+        
+        jFile.println("\t.limit stack          2");
+        jFile.println("\t.limit locals         1");
+        jFile.println("\t.line                 6");
+        jFile.println("\tgetstatic             java/lang/System/out Ljava/io/PrintStream;");
+        jFile.println("\tnew       java/lang/StringBuilder");
+        jFile.println("\tdup");
+        jFile.println("\tldc \"Output = \"");
+        jFile.println("\tinvokenonvirtual java/lang/StringBuilder/<init>(Ljava/lang/String;)V");
+
+        Integer value = visitChildren(ctx);
+
+        jFile.println("\tinvokevirtual java/lang/StringBuilder/append(I)Ljava/lang/StringBuilder;");
+        jFile.println("\tinvokevirtual java/lang/StringBuilder/toString()Ljava/lang/String;");
+        jFile.println("\tinvokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
+        jFile.println("\t.line                 8");
+        jFile.println("\treturn");
+        jFile.println("\t.throws               java/lang/Exception");
+
+        return 1; 
+    }
 
 
 
