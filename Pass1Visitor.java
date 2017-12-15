@@ -123,7 +123,7 @@ public class Pass1Visitor extends PirateBaseVisitor<Integer>
     }
 
     @Override 
-    public T visitString(PirateParser.StringContext ctx) 
+    public Integer visitString(PirateParser.StringContext ctx) 
     { 
         return visitChildren(ctx); 
     }
