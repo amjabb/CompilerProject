@@ -216,11 +216,17 @@ public interface BusinessVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitWhileStatement(BusinessParser.WhileStatementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link BusinessParser#procedureType}.
+	 * Visit a parse tree produced by {@link BusinessParser#functionDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitProcedureType(BusinessParser.ProcedureTypeContext ctx);
+	T visitFunctionDeclaration(BusinessParser.FunctionDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BusinessParser#functionType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionType(BusinessParser.FunctionTypeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link BusinessParser#formalParameterList}.
 	 * @param ctx the parse tree

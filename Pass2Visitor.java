@@ -211,6 +211,78 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
         return visitChildren(ctx); 
     }
 
+    @Override 
+    public Integer visitCompareExpr(BusinessParser.CompareExprContext ctx) 
+    { 
+        Integer value = visitChildren(ctx);
+
+        TypeSpec type1 = ctx.expr(0).type;
+        TypeSpec type2 = ctx.expr(1).type;
+
+        boolean integerMode =    (type1 == Predefined.integerType)
+                              && (type2 == Predefined.integerType);
+        boolean realMode    =    (type1 == Predefined.realType)
+                              && (type2 == Predefined.realType);
+
+        String op = ctx.compareOp().getText();
+        String op_code = "";
+
+        switch(op){
+            case "<":
+                op_code = "if_icmplt L002";
+                break;
+            case ">":
+                op_code = "if_icmpgt L002";
+                break;
+            case ">=":
+                op_code = "if_icmpge L002";
+                break;
+            case "<=":
+                op_code = "if_icmple L002";
+                break;
+            case "==":
+                op_code = "if_icmpeq L002";
+                break;
+            case "!=":
+                op_code = "if_icmpne L002";
+                break;
+        }
+        jFile.println("\t" + op_code);
+        return value; 
+    }
+
+
+    @Override 
+    public Integer visitIfStatement(BusinessParser.IfStatementContext ctx) 
+    { 
+        Integer value = visit(ctx.expr());
+        jFile.println("\ticonst_0");
+        jFile.println("\tgoto L003");
+        jFile.println("\tL002:");
+        jFile.println("\ticonst_1");
+        jFile.println("\tL003:");
+        jFile.println("\tifeq L001");
+        value = visitChildren(ctx.stmt(0));
+        jFile.println("\tL001:");
+        return value; 
+    }
+
+    @Override 
+    public Integer visitWhileStatement(BusinessParser.WhileStatementContext ctx) 
+    { 
+        jFile.println("\tW001:");
+        Integer value = visit(ctx.expr());
+        jFile.println("\ticonst_0");
+        jFile.println("\tgoto W003");
+        jFile.println("\tL002:");
+        value = visit(ctx.stmt());
+        jFile.println("\tgoto W001");
+        jFile.println("\tW003:");
+
+        return value; 
+    }
+
+
 
     @Override 
     public Integer visitPrintStmt(BusinessParser.PrintStmtContext ctx) 
@@ -227,7 +299,7 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
 
         Integer value = visitChildren(ctx);
 
-        jFile.println("\tinvokevirtual java/lang/StringBuilder/append(F)Ljava/lang/StringBuilder;");
+        jFile.println("\tinvokevirtual java/lang/StringBuilder/append(I)Ljava/lang/StringBuilder;");
         jFile.println("\tinvokevirtual java/lang/StringBuilder/toString()Ljava/lang/String;");
         jFile.println("\tinvokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
         jFile.println("\t.line                 8");

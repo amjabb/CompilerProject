@@ -4,10 +4,11 @@
 .field private static _runTimer LRunTimer;
 .field private static _standardIn LPascalTextIn;
 
-; i,j:integer
+; i,j,k:integer
 
 .field private static i I
 .field private static j I
+.field private static k I
 
 ; alpha,beta5x:real
 
@@ -55,15 +56,20 @@
 	iadd
 	putstatic	sample/i I
 
-; IFi!=jTHENi:=1
+; IFi<jTHENi:=1
 
 	getstatic	sample/i I
 	getstatic	sample/j I
-
-; i:=1
-
+	if_icmplt L002
+	iconst_0
+	goto L003
+	L002:
+	iconst_1
+	L003:
+	ifeq L001
 	ldc	1
 	putstatic	sample/i I
+	L001:
 
 ; alpha:=9.3
 
@@ -95,7 +101,31 @@
 	fmul
 	putstatic	sample/beta5x F
 
-; PRINT(alpha)
+; i:=0
+
+	ldc	0
+	putstatic	sample/i I
+
+; WHILEi<10DOi:=i+1
+
+	W001:
+	getstatic	sample/i I
+	ldc	10
+	if_icmplt L002
+	iconst_0
+	goto W003
+	L002:
+
+; i:=i+1
+
+	getstatic	sample/i I
+	ldc	1
+	iadd
+	putstatic	sample/i I
+	goto W001
+	W003:
+
+; PRINT(i)
 
 	.limit stack          2
 	.limit locals         1
@@ -105,8 +135,8 @@
 	dup
 	ldc "Output = "
 	invokenonvirtual java/lang/StringBuilder/<init>(Ljava/lang/String;)V
-	getstatic	sample/alpha F
-	invokevirtual java/lang/StringBuilder/append(F)Ljava/lang/StringBuilder;
+	getstatic	sample/i I
+	invokevirtual java/lang/StringBuilder/append(I)Ljava/lang/StringBuilder;
 	invokevirtual java/lang/StringBuilder/toString()Ljava/lang/String;
 	invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V
 	.line                 8

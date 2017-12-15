@@ -34,11 +34,11 @@ variable : IDENTIFIER ;
 expr locals [ TypeSpec type = null ]
     : expr mulDivOp expr   # mulDivExpr
     | expr addSubOp expr   # addSubExpr
-    | expr compareOp expr # compareExpr
     | number               # unsignedNumberExpr
     | signedNumber         # signedNumberExpr
     | variable             # variableExpr
     | string               # stringExpr
+    | expr compareOp expr # compareExpr
     | '(' expr ')'         # parenExpr
     ;
 
@@ -65,8 +65,12 @@ whileStatement
    : 'WHILE' expr 'DO' stmt
    ;
 
-procedureType
-   : 'PROCEDURE' (formalParameterList)?
+functionDeclaration
+   : 'FUNCTION' IDENTIFIER (formalParameterList)? ':' typeId ';' block
+   ;
+
+functionType
+   : 'FUNCTION' (formalParameterList)? ':' typeId
    ;
 
 formalParameterList
@@ -109,5 +113,6 @@ DIV_OP :   '/' ;
 ADD_OP :   '+' ;
 SUB_OP :   '-' ;
 
+LineComment:   '//' ~[\r\n]* -> skip;
 NEWLINE : '\r'? '\n' -> skip  ;
 WS      : [ \t]+ -> skip ; 
