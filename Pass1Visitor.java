@@ -122,11 +122,6 @@ public class Pass1Visitor extends PirateBaseVisitor<Integer>
         return visitChildren(ctx); 
     }
 
-    @Override 
-    public Integer visitString(PirateParser.StringContext ctx) 
-    { 
-        return visitChildren(ctx); 
-    }
 
     // @Override 
     // public Integer visitDecl(Pcl2Parser.DeclContext ctx) 

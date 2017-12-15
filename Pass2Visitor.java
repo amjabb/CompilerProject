@@ -110,102 +110,94 @@ public class Pass2Visitor extends PirateBaseVisitor<Integer>
     @Override 
     public Integer visitWrite_stmt(PirateParser.Write_stmtContext ctx) 
     {   
-        if(true){
-            String valueStr = ctx.output().string().getText();
-            jFile.println("\t.limit stack          2");
-            jFile.println("\t.limit locals         1");
-            jFile.println("\t.line                 6");
-            jFile.println("\tgetstatic             java/lang/System/out Ljava/io/PrintStream;");
-            jFile.println("\tldc                   \"" + valueStr + "\"");
-            jFile.println("\tinvokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
-            jFile.println("\t.line                 8");
-            jFile.println("\treturn");
-            jFile.println("\t.throws               java/lang/Exception");
-        } else {
-            // String value = ctx.variable().IDENTIFIER().toString(); 
-            // jFile.println("\t.limit stack          2");
-            // jFile.println("\t.limit locals         1");
-            // jFile.println("\t.line                 6");
-            // jFile.println("\tgetstatic             java/lang/System/out Ljava/io/PrintStream;");
-            // jFile.println("\tgetstatic\t" + programName
-            //                +  "/" + value
-            //                + " I");
-            // jFile.println("\tinvokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
-            // jFile.println("\t.line                 8");
-            // jFile.println("\treturn");
-            // jFile.println("\t.throws               java/lang/Exception");
-        }
-        
-
+        String valueStr = ctx.output().string().getText();
+        System.out.println(valueStr);
+        jFile.println("\t.limit stack          2");
+        jFile.println("\t.limit locals         1");
+        jFile.println("\t.line                 6");
+        jFile.println("\tgetstatic             java/lang/System/out Ljava/io/PrintStream;");
+        jFile.println("\tldc                   \"" + valueStr + "\"");
+        jFile.println("\tinvokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
+        jFile.println("\t.line                 8");
+        jFile.println("\treturn");
+        jFile.println("\t.throws               java/lang/Exception");
         
         return visitChildren(ctx); 
     }
 
-    // @Override 
-    // public Integer visitAddSubExpr(Pcl2Parser.AddSubExprContext ctx)
-    // {
-    //     Integer value = visitChildren(ctx);
+    @Override 
+    public Integer visitIf_stmt(PirateParser.If_stmtContext ctx)
+    { 
+        return visitChildren(ctx); 
+    }
+
+
+
+    @Override 
+    public Integer visitAddSubExpr(PirateParser.AddSubExprContext ctx)
+    {
+        Integer value = visitChildren(ctx);
                         
-    //     TypeSpec type1 = ctx.expr(0).type;
-    //     TypeSpec type2 = ctx.expr(1).type;
+        TypeSpec type1 = ctx.expr(0).type;
+        TypeSpec type2 = ctx.expr(1).type;
         
-    //     boolean integerMode =    (type1 == Predefined.integerType)
-    //                           && (type2 == Predefined.integerType);
-    //     boolean realMode    =    (type1 == Predefined.realType)
-    //                           && (type2 == Predefined.realType);
+        boolean integerMode =    (type1 == Predefined.integerType)
+                              && (type2 == Predefined.integerType);
+        boolean realMode    =    (type1 == Predefined.realType)
+                              && (type2 == Predefined.realType);
         
-    //     String op = ctx.addSubOp().getText();
-    //     String opcode;
+        String op = ctx.add_sub_op().getText();
+        String opcode;
 
-    //     if (op.equals("+")) {
-    //         opcode = integerMode ? "iadd"
-    //                : realMode    ? "fadd"
-    //                :               "????";
-    //     }
-    //     else {
-    //         opcode = integerMode ? "isub"
-    //                : realMode    ? "fsub"
-    //                :               "????";
-    //     }
+        if (op.equals("+")) {
+            opcode = integerMode ? "iadd"
+                   : realMode    ? "fadd"
+                   :               "????";
+        }
+        else {
+            opcode = integerMode ? "isub"
+                   : realMode    ? "fsub"
+                   :               "????";
+        }
         
-    //     // Emit an add or subtract instruction.
-    //     jFile.println("\t" + opcode);
+        // Emit an add or subtract instruction.
+        jFile.println("\t" + opcode);
         
-    //     return value; 
-    // }
+        return value; 
+    }
 
-    // @Override 
-    // public Integer visitMulDivExpr(Pcl2Parser.MulDivExprContext ctx)
-    // {
-    //     Integer value = visitChildren(ctx);
+    @Override 
+    public Integer visitMulDivExpr(PirateParser.MulDivExprContext ctx)
+    {
+        Integer value = visitChildren(ctx);
                 
-    //     TypeSpec type1 = ctx.expr(0).type;
-    //     TypeSpec type2 = ctx.expr(1).type;
+        TypeSpec type1 = ctx.expr(0).type;
+        TypeSpec type2 = ctx.expr(1).type;
         
-    //     boolean integerMode =    (type1 == Predefined.integerType)
-    //                           && (type2 == Predefined.integerType);
-    //     boolean realMode    =    (type1 == Predefined.realType)
-    //                           && (type2 == Predefined.realType);
+        boolean integerMode =    (type1 == Predefined.integerType)
+                              && (type2 == Predefined.integerType);
+        boolean realMode    =    (type1 == Predefined.realType)
+                              && (type2 == Predefined.realType);
         
-    //     String op = ctx.mulDivOp().getText();
-    //     String opcode;
+        String op = ctx.mul_div_op().getText();
+        String opcode;
 
-    //     if (op.equals("*")) {
-    //         opcode = integerMode ? "imul"
-    //                : realMode    ? "fmul"
-    //                :               "f???";
-    //     }
-    //     else {
-    //         opcode = integerMode ? "idiv"
-    //                : realMode    ? "fdiv"
-    //                :               "????";
-    //     }
+        if (op.equals("*")) {
+            opcode = integerMode ? "imul"
+                   : realMode    ? "fmul"
+                   :               "f???";
+        }
+        else {
+            opcode = integerMode ? "idiv"
+                   : realMode    ? "fdiv"
+                   :               "????";
+        }
         
-    //     // Emit a multiply or divide instruction.
-    //     jFile.println("\t" + opcode);
+        // Emit a multiply or divide instruction.
+        jFile.println("\t" + opcode);
         
-    //     return value; 
-    // }
+        return value; 
+    }
 
     // @Override 
     // public Integer visitVariableExpr(Pcl2Parser.VariableExprContext ctx)
@@ -240,39 +232,6 @@ public class Pass2Visitor extends PirateBaseVisitor<Integer>
     //     }
         
     //     return value;
-    // }
-
-    // @Override 
-    // public Integer visitIntegerConst(Pcl2Parser.IntegerConstContext ctx)
-    // {
-    //     // Emit a load constant instruction.
-    //     jFile.println("\tldc\t" + ctx.getText());
-        
-    //     return visitChildren(ctx); 
-    // }
-
-    // @Override 
-    // public Integer visitFloatConst(Pcl2Parser.FloatConstContext ctx)
-    // {
-    //     // Emit a load constant instruction.
-    //     jFile.println("\tldc\t" + ctx.getText());
-        
-    //     return visitChildren(ctx); 
-    // }
-
-    // @Override 
-    // public Integer visitWriteStmt(Pcl2Parser.WriteStmtContext ctx) 
-    // { 
-    //     jFile.println("\t.limit stack          2");
-    //     jFile.println("\t.limit locals         1");
-    //     jFile.println("\t.line                 6");
-    //     jFile.println("\tgetstatic             java/lang/System/out Ljava/io/PrintStream;");
-    //     jFile.println("\tldc                   \"HI\"");
-    //     jFile.println("\tinvokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
-    //     jFile.println("\t.line                 8");
-    //     jFile.println("\treturn");
-    //     jFile.println("\t.throws               java/lang/Exception");
-    //     return visitChildren(ctx); 
     // }
 
 

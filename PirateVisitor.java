@@ -56,12 +56,6 @@ public interface PirateVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssign_stmt(PirateParser.Assign_stmtContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PirateParser#variable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariable(PirateParser.VariableContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code variableExpr}
 	 * labeled alternative in {@link PirateParser#expr}.
 	 * @param ctx the parse tree
@@ -97,6 +91,42 @@ public interface PirateVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParenExpr(PirateParser.ParenExprContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PirateParser#mul_div_op}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMul_div_op(PirateParser.Mul_div_opContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PirateParser#add_sub_op}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAdd_sub_op(PirateParser.Add_sub_opContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PirateParser#compare_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCompare_stmt(PirateParser.Compare_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PirateParser#if_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIf_stmt(PirateParser.If_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PirateParser#while_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhile_stmt(PirateParser.While_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PirateParser#variable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariable(PirateParser.VariableContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code integerConst}
 	 * labeled alternative in {@link PirateParser#number}.
 	 * @param ctx the parse tree
@@ -128,4 +158,10 @@ public interface PirateVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitString(PirateParser.StringContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PirateParser#compare_op}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCompare_op(PirateParser.Compare_opContext ctx);
 }
