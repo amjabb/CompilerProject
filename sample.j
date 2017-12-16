@@ -15,16 +15,8 @@
 .field private static alpha F
 .field private static beta5x F
 
-; FUNCTIONadd(n1,n2:integer):integer;VARs:integer;BEGINadd:=12END
+; FUNCTIONadder(n1,n2:integer):integer;VARs:integer;BEGINi:=1;RETURNEND
 
-.field private static n1 I
-.field private static n2 I
-.field private static n1 I
-.field private static n2 I
-
-; s:integer
-
-.field private static s I
 
 .method public <init>()V
 
@@ -35,15 +27,19 @@
 .limit locals 1
 .limit stack 1
 .end method
+.method public static adder(II)I
 
-.method public <init>()V
+; i:=1
 
-	aload_0
-	invokenonvirtual    java/lang/Object/<init>()V
-	return
+	ldc	1
+	putstatic	sample/i I
 
-.limit locals 1
-.limit stack 1
+; RETURN
+
+getstatic    sample/i I
+ireturn
+.limit locals 5
+.limit stack 2
 .end method
 
 .method public static main([Ljava/lang/String;)V
@@ -56,11 +52,6 @@
 	dup
 	invokenonvirtual PascalTextIn/<init>()V
 	putstatic        sample/_standardIn LPascalTextIn;
-
-; add:=12
-
-	ldc	12
-	putstatic	sample/add I
 
 ; i:=32
 
@@ -146,7 +137,7 @@
 	goto W001
 	W003:
 
-; IF(0<1)THENi:=0
+; IF(0<1)THENi:=5
 
 	ldc	0
 	ldc	1
@@ -157,9 +148,15 @@
 	iconst_1
 	L006:
 	ifeq L004
-	ldc	0
+	ldc	5
 	putstatic	sample/i I
 	L004:
+
+; CALLadder(100,200)
+
+bipush 100
+sipush 200
+invokestatic sample/adder(II)I
 
 ; PRINT(i)
 

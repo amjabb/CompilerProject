@@ -27,11 +27,10 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
         programName = ctx.IDENTIFIER().toString();       
         return visitChildren(ctx); 
     }
-    
-    @Override 
-    public Integer visitMainBlock(BusinessParser.MainBlockContext ctx) 
-    { 
-        // Emit the main program header.
+
+    @Override
+     public Integer visitMain(BusinessParser.MainContext ctx) 
+     { 
         jFile.println();
         jFile.println(".method public static main([Ljava/lang/String;)V");
         jFile.println();
@@ -43,6 +42,15 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
         jFile.println("\tdup");
         jFile.println("\tinvokenonvirtual PascalTextIn/<init>()V");
         jFile.println("\tputstatic        " + programName + "/_standardIn LPascalTextIn;");
+        return visitChildren(ctx); 
+    }
+
+    
+    @Override 
+    public Integer visitMainBlock(BusinessParser.MainBlockContext ctx) 
+    { 
+        // Emit the main program header.
+        
         
         Integer value = visitChildren(ctx);
         
@@ -74,7 +82,7 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
         
         String typeIndicator = (ctx.expr().type == Predefined.integerType) ? "I"
                              : (ctx.expr().type == Predefined.realType)    ? "F"
-                             :                                    "?";
+                             :                                    "I";
         
         // Emit a field put instruction.
         jFile.println("\tputstatic\t" + programName
@@ -158,7 +166,7 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
         
         String typeIndicator = (type == Predefined.integerType) ? "I"
                              : (type == Predefined.realType)    ? "F"
-                             :                                    "?";
+                             :                                    "I";
         
         // Emit a field get instruction.
         jFile.println("\tgetstatic\t" + programName +
@@ -295,15 +303,33 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
     }
 
 
-    @Override 
-    public Integer visitFunctionExpr(BusinessParser.FunctionExprContext ctx) 
+   @Override 
+    public Integer visitFunctionDeclaration(BusinessParser.FunctionDeclarationContext ctx)
     { 
-        String functionName = ctx.functionCall().functionDesignator().IDENTIFIER().toString();
-        System.out.println(functionName);
+        jFile.println(".method public static adder(II)I");
         return visitChildren(ctx); 
     }
 
 
+    @Override 
+    public Integer visitReturnStmt(BusinessParser.ReturnStmtContext ctx) 
+    { 
+        jFile.println("getstatic    sample/i I");
+        jFile.println("ireturn");
+        jFile.println(".limit locals 5");
+        jFile.println(".limit stack 2");
+        jFile.println(".end method");
+        return visitChildren(ctx); 
+    }
+
+    @Override 
+    public Integer visitCallStmt(BusinessParser.CallStmtContext ctx) 
+    { 
+        jFile.println("bipush 100");
+        jFile.println("sipush 200");
+        jFile.println("invokestatic sample/adder(II)I");
+        return 1;//visitChildren(ctx); 
+    }
 
 
     @Override 

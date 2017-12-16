@@ -114,6 +114,18 @@ public class Pass1Visitor extends BusinessBaseVisitor<Integer>
         
         return visitChildren(ctx); 
     }
+
+    @Override 
+    public Integer visitFuncId(BusinessParser.FuncIdContext ctx) 
+    {
+        String variableName = ctx.IDENTIFIER().toString();
+        
+        SymTabEntry variableId = symTabStack.enterLocal(variableName);
+        variableId.setDefinition(FUNCTION);
+        variableIdList.add(variableId);
+        
+        return visitChildren(ctx); 
+    }
     
     @Override 
     public Integer visitTypeId(BusinessParser.TypeIdContext ctx) 
@@ -188,15 +200,6 @@ public class Pass1Visitor extends BusinessBaseVisitor<Integer>
         
         return value; 
     }
-
-    @Override 
-    public Integer visitFunctionExpr(BusinessParser.FunctionExprContext ctx) 
-    { 
-        System.out.println("HIIIII");
-        symTabStack.push();
-        return visitChildren(ctx); 
-    }
-
 
     
     @Override 

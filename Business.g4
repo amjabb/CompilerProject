@@ -8,7 +8,8 @@ grammar Business;  // A tiny subset of Pascal
 program   : header mainBlock '.' ;
 header    : PROGRAM IDENTIFIER ';' ;
 mainBlock : block;
-block     : declarations compoundStmt ;
+block     : declarations main compoundStmt ;
+main : MAIN;
 
 declarations : VAR declList ';' ;
 declList     : decl ( ';' decl )* ;
@@ -16,6 +17,7 @@ decl         : varList ':' typeId
              | functionDeclaration ;
 varList      : varId ( ',' varId )* ;
 varId        : IDENTIFIER ;
+funcId        : IDENTIFIER;
 typeId       : IDENTIFIER ;
 
 compoundStmt : BEGIN stmtList END ;
@@ -25,8 +27,10 @@ stmt : compoundStmt
      | ifStatement
      | whileStatement
      | printStmt
+     | returnStmt
+     | callStmt
      ;
-     
+
 stmtList       : stmt ( ';' stmt )* ;
 assignmentStmt : variable ':=' expr ;
 
@@ -40,7 +44,6 @@ expr locals [ TypeSpec type = null ]
     | variable             # variableExpr
     | string               # stringExpr
     | expr compareOp expr # compareExpr
-    | functionCall            #functionExpr
     | '(' expr ')'         # parenExpr
     ;
 
@@ -68,8 +71,10 @@ whileStatement
    ;
 
 functionDeclaration
-   : 'FUNCTION' IDENTIFIER (formalParameterList)? ':' typeId ';' block
+   : 'FUNCTION' funcId (formalParameterList)? ':' IDENTIFIER ';' VAR IDENTIFIER ( ',' IDENTIFIER )* ':' IDENTIFIER  ';' compoundStmt
    ;
+
+returnStmt: RETURN;
 
 formalParameterList
    : '(' formalParameterSection (';' formalParameterSection)* ')'
@@ -81,10 +86,10 @@ formalParameterSection
    ;
 
 parameterGroup
-   : varList ':' typeId
+   : IDENTIFIER ( ',' IDENTIFIER )* ':' IDENTIFIER
    ;
 
-functionCall : functionDesignator ';';
+callStmt : CALL functionDesignator;
 
 functionDesignator
    : IDENTIFIER '(' parameterList ')'
@@ -108,7 +113,10 @@ string
 PROGRAM : 'PROGRAM' ;
 VAR     : 'VAR' ;
 BEGIN   : 'BEGIN' ;
+RETURN : 'RETURN';
 END     : 'END' ;
+MAIN : 'MAIN';
+CALL : 'CALL';
 
 IDENTIFIER : [a-zA-Z][a-zA-Z0-9]* ;
 INTEGER    : [0-9]+ ;
