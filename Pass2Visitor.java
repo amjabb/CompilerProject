@@ -307,6 +307,11 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
     public Integer visitFunctionDeclaration(BusinessParser.FunctionDeclarationContext ctx)
     { 
         jFile.println(".method public static adder(II)I");
+        //works
+        // jFile.println("iload_0");
+        // jFile.println("putstatic    sample/i I"); 
+        //figure out a way to return here
+        //visit(ctx.compoundStmt().stmtList().stmt(0).returnStmt());
         return visitChildren(ctx); 
     }
 
@@ -317,7 +322,7 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
         jFile.println("getstatic    sample/i I");
         jFile.println("ireturn");
         jFile.println(".limit locals 5");
-        jFile.println(".limit stack 2");
+        jFile.println(".limit stack 5");
         jFile.println(".end method");
         return visitChildren(ctx); 
     }
@@ -325,10 +330,9 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
     @Override 
     public Integer visitCallStmt(BusinessParser.CallStmtContext ctx) 
     { 
-        jFile.println("bipush 100");
-        jFile.println("sipush 200");
-        jFile.println("invokestatic sample/adder(II)I");
-        return 1;//visitChildren(ctx); 
+        Integer value = visitChildren(ctx); 
+        jFile.println("invokestatic "+ programName + "/" + ctx.functionDesignator().IDENTIFIER().getText() + "(II)I");
+        return value; 
     }
 
 
@@ -350,9 +354,9 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
         jFile.println("\tinvokevirtual java/lang/StringBuilder/append(I)Ljava/lang/StringBuilder;");
         jFile.println("\tinvokevirtual java/lang/StringBuilder/toString()Ljava/lang/String;");
         jFile.println("\tinvokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
-        jFile.println("\t.line                 8");
-        jFile.println("\treturn");
-        jFile.println("\t.throws               java/lang/Exception");
+        // jFile.println("\t.line                 8");
+        // jFile.println("\treturn");
+        // jFile.println("\t.throws               java/lang/Exception");
 
         return 1; 
     }

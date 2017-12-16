@@ -212,6 +212,23 @@ public class Pass1Visitor extends BusinessBaseVisitor<Integer>
         return visitChildren(ctx); 
     }
 
+    @Override 
+    public Integer visitFunctionDeclaration(BusinessParser.FunctionDeclarationContext ctx)
+     { 
+        symTabStack.push();
+        return visitChildren(ctx); 
+    }
+
+    @Override 
+    public Integer visitReturnStmt(BusinessParser.ReturnStmtContext ctx) 
+    { 
+        symTabStack.pop();
+        return visitChildren(ctx); 
+    }
+
+
+
+
     @Override
     public Integer visitString(BusinessParser.StringContext ctx)
     {

@@ -8,7 +8,8 @@ FUNCTION adder(n1, n2 : integer) : integer;
 	VAR 
 		s: integer;
 	BEGIN
-		i := 1;
+        //PRINT(n1)
+		i := n1;
 		RETURN
 	END;
 

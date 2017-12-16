@@ -15,8 +15,17 @@
 .field private static alpha F
 .field private static beta5x F
 
-; FUNCTIONadder(n1,n2:integer):integer;VARs:integer;BEGINi:=1;RETURNEND
+; FUNCTIONadder(n1,n2:integer):integer;VARs:integer;BEGINi:=n1;RETURNEND
 
+
+; n1,n2:integer
+
+.field private static n1 I
+.field private static n2 I
+
+; s:integer
+
+.field private static s I
 
 .method public <init>()V
 
@@ -29,9 +38,9 @@
 .end method
 .method public static adder(II)I
 
-; i:=1
+; i:=n1
 
-	ldc	1
+	getstatic	sample/n1 I
 	putstatic	sample/i I
 
 ; RETURN
@@ -39,7 +48,7 @@
 getstatic    sample/i I
 ireturn
 .limit locals 5
-.limit stack 2
+.limit stack 5
 .end method
 
 .method public static main([Ljava/lang/String;)V
@@ -154,11 +163,11 @@ ireturn
 
 ; CALLadder(100,200)
 
-bipush 100
-sipush 200
+	ldc	100
+	ldc	200
 invokestatic sample/adder(II)I
 
-; PRINT(i)
+; PRINT('i')
 
 	.limit stack          2
 	.limit locals         1
@@ -168,13 +177,10 @@ invokestatic sample/adder(II)I
 	dup
 	ldc "Output = "
 	invokenonvirtual java/lang/StringBuilder/<init>(Ljava/lang/String;)V
-	getstatic	sample/i I
+	ldc                   "'i'"
 	invokevirtual java/lang/StringBuilder/append(I)Ljava/lang/StringBuilder;
 	invokevirtual java/lang/StringBuilder/toString()Ljava/lang/String;
 	invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V
-	.line                 8
-	return
-	.throws               java/lang/Exception
 
 	getstatic     sample/_runTimer LRunTimer;
 	invokevirtual RunTimer.printElapsedTime()V

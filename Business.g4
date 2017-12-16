@@ -71,7 +71,7 @@ whileStatement
    ;
 
 functionDeclaration
-   : 'FUNCTION' funcId (formalParameterList)? ':' IDENTIFIER ';' VAR IDENTIFIER ( ',' IDENTIFIER )* ':' IDENTIFIER  ';' compoundStmt
+   : 'FUNCTION' funcId (formalParameterList)? ':' IDENTIFIER ';' VAR decl ';' compoundStmt
    ;
 
 returnStmt: RETURN;
@@ -86,7 +86,7 @@ formalParameterSection
    ;
 
 parameterGroup
-   : IDENTIFIER ( ',' IDENTIFIER )* ':' IDENTIFIER
+   : decl
    ;
 
 callStmt : CALL functionDesignator;
