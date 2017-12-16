@@ -12,7 +12,8 @@ block     : declarations compoundStmt ;
 
 declarations : VAR declList ';' ;
 declList     : decl ( ';' decl )* ;
-decl         : varList ':' typeId ;
+decl         : varList ':' typeId
+             | functionDeclaration ;
 varList      : varId ( ',' varId )* ;
 varId        : IDENTIFIER ;
 typeId       : IDENTIFIER ;
@@ -39,6 +40,7 @@ expr locals [ TypeSpec type = null ]
     | variable             # variableExpr
     | string               # stringExpr
     | expr compareOp expr # compareExpr
+    | functionCall            #functionExpr
     | '(' expr ')'         # parenExpr
     ;
 
@@ -69,10 +71,6 @@ functionDeclaration
    : 'FUNCTION' IDENTIFIER (formalParameterList)? ':' typeId ';' block
    ;
 
-functionType
-   : 'FUNCTION' (formalParameterList)? ':' typeId
-   ;
-
 formalParameterList
    : '(' formalParameterSection (';' formalParameterSection)* ')'
    ;
@@ -80,15 +78,24 @@ formalParameterList
 formalParameterSection
    : parameterGroup
    | 'VAR' parameterGroup
-   | 'PROCEDURE' parameterGroup
    ;
 
 parameterGroup
-   : identifierList ':' typeId
+   : varList ':' typeId
    ;
 
-identifierList
-   : IDENTIFIER (',' IDENTIFIER)*
+functionCall : functionDesignator ';';
+
+functionDesignator
+   : IDENTIFIER '(' parameterList ')'
+   ;
+
+parameterList
+   : actualParameter (',' actualParameter)*
+   ;
+
+actualParameter
+   : expr
    ;
 
 printStmt: 'PRINT' '(' expr ')';
