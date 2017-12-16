@@ -229,58 +229,80 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
 
         switch(op){
             case "<":
-                op_code = "if_icmplt L002";
+                op_code = "if_icmplt";
                 break;
             case ">":
-                op_code = "if_icmpgt L002";
+                op_code = "if_icmpgt";
                 break;
             case ">=":
-                op_code = "if_icmpge L002";
+                op_code = "if_icmpge";
                 break;
             case "<=":
-                op_code = "if_icmple L002";
+                op_code = "if_icmple";
                 break;
             case "==":
-                op_code = "if_icmpeq L002";
+                op_code = "if_icmpeq";
                 break;
             case "!=":
-                op_code = "if_icmpne L002";
+                op_code = "if_icmpne";
                 break;
         }
-        jFile.println("\t" + op_code);
+        jFile.print("\t" + op_code);
         return value; 
     }
 
-
+    static Integer i = 1;
     @Override 
     public Integer visitIfStatement(BusinessParser.IfStatementContext ctx) 
     { 
+        
         Integer value = visit(ctx.expr());
+        jFile.print(" L00" + Integer.toString(i+1) + "\n");
         jFile.println("\ticonst_0");
-        jFile.println("\tgoto L003");
-        jFile.println("\tL002:");
+        jFile.println("\tgoto L00" + Integer.toString(i+2));
+        jFile.println("\tL00" + Integer.toString(i+1) + ":");
         jFile.println("\ticonst_1");
-        jFile.println("\tL003:");
-        jFile.println("\tifeq L001");
+        jFile.println("\tL00" + Integer.toString(i+2) + ":");
+        jFile.println("\tifeq L00" + Integer.toString(i));
         value = visitChildren(ctx.stmt(0));
-        jFile.println("\tL001:");
+        jFile.println("\tL00" + Integer.toString(i) + ":");
+        i += 3;
+        return value; 
+    }
+
+    static Integer j = 1;
+    @Override 
+    public Integer visitWhileStatement(BusinessParser.WhileStatementContext ctx) 
+    { 
+        
+        jFile.println("\tW00" + Integer.toString(j) + ":");
+        Integer value = visit(ctx.expr());
+        jFile.print(" W00" + Integer.toString(j+1) + "\n");
+        jFile.println("\ticonst_0");
+        jFile.println("\tgoto W00" + Integer.toString(j+2));
+        jFile.println("\tW00" + Integer.toString(j+1) + ":");
+        value = visit(ctx.stmt());
+        jFile.println("\tgoto W00" + Integer.toString(j));
+        jFile.println("\tW00" + Integer.toString(j+2) +":");
+        j += 3;
         return value; 
     }
 
     @Override 
-    public Integer visitWhileStatement(BusinessParser.WhileStatementContext ctx) 
+    public Integer visitFormalParameterList(BusinessParser.FormalParameterListContext ctx) 
     { 
-        jFile.println("\tW001:");
-        Integer value = visit(ctx.expr());
-        jFile.println("\ticonst_0");
-        jFile.println("\tgoto W003");
-        jFile.println("\tL002:");
-        value = visit(ctx.stmt());
-        jFile.println("\tgoto W001");
-        jFile.println("\tW003:");
-
-        return value; 
+        return visitChildren(ctx); 
     }
+
+
+    @Override 
+    public Integer visitFunctionExpr(BusinessParser.FunctionExprContext ctx) 
+    { 
+        String functionName = ctx.functionCall().functionDesignator().IDENTIFIER().toString();
+        System.out.println(functionName);
+        return visitChildren(ctx); 
+    }
+
 
 
 

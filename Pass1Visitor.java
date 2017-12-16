@@ -51,6 +51,7 @@ public class Pass1Visitor extends BusinessBaseVisitor<Integer>
         try {
             jFile = new PrintWriter(new FileWriter(programName + ".j"));
         }
+
         catch (Exception ex) {
             ex.printStackTrace();
             return 0;
@@ -187,6 +188,16 @@ public class Pass1Visitor extends BusinessBaseVisitor<Integer>
         
         return value; 
     }
+
+    @Override 
+    public Integer visitFunctionExpr(BusinessParser.FunctionExprContext ctx) 
+    { 
+        System.out.println("HIIIII");
+        symTabStack.push();
+        return visitChildren(ctx); 
+    }
+
+
     
     @Override 
     public Integer visitVariableExpr(BusinessParser.VariableExprContext ctx)
@@ -201,7 +212,7 @@ public class Pass1Visitor extends BusinessBaseVisitor<Integer>
     @Override
     public Integer visitString(BusinessParser.StringContext ctx)
     {
-        
+
         return visitChildren(ctx); 
     }
 

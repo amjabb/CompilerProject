@@ -15,6 +15,27 @@
 .field private static alpha F
 .field private static beta5x F
 
+; FUNCTIONadd(n1,n2:integer):integer;VARs:integer;BEGINadd:=12END
+
+.field private static n1 I
+.field private static n2 I
+.field private static n1 I
+.field private static n2 I
+
+; s:integer
+
+.field private static s I
+
+.method public <init>()V
+
+	aload_0
+	invokenonvirtual    java/lang/Object/<init>()V
+	return
+
+.limit locals 1
+.limit stack 1
+.end method
+
 .method public <init>()V
 
 	aload_0
@@ -36,6 +57,11 @@
 	invokenonvirtual PascalTextIn/<init>()V
 	putstatic        sample/_standardIn LPascalTextIn;
 
+; add:=12
+
+	ldc	12
+	putstatic	sample/add I
+
 ; i:=32
 
 	ldc	32
@@ -56,11 +82,11 @@
 	iadd
 	putstatic	sample/i I
 
-; IFi<jTHENi:=1
+; IFi>jTHENi:=1
 
 	getstatic	sample/i I
 	getstatic	sample/j I
-	if_icmplt L002
+	if_icmpgt L002
 	iconst_0
 	goto L003
 	L002:
@@ -101,20 +127,15 @@
 	fmul
 	putstatic	sample/beta5x F
 
-; i:=0
-
-	ldc	0
-	putstatic	sample/i I
-
 ; WHILEi<10DOi:=i+1
 
 	W001:
 	getstatic	sample/i I
 	ldc	10
-	if_icmplt L002
+	if_icmplt W002
 	iconst_0
 	goto W003
-	L002:
+	W002:
 
 ; i:=i+1
 
@@ -124,6 +145,21 @@
 	putstatic	sample/i I
 	goto W001
 	W003:
+
+; IF(0<1)THENi:=0
+
+	ldc	0
+	ldc	1
+	if_icmplt L005
+	iconst_0
+	goto L006
+	L005:
+	iconst_1
+	L006:
+	ifeq L004
+	ldc	0
+	putstatic	sample/i I
+	L004:
 
 ; PRINT(i)
 
