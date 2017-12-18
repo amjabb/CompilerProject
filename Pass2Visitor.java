@@ -251,7 +251,7 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
     @Override 
     public Integer visitStringExpr(BusinessParser.StringExprContext ctx) 
     { 
-        String valueStr = ctx.string().getText();
+        String valueStr = ctx.STRING().getText();
         jFile.println("\tldc                   \"" + valueStr + "\"");
         return visitChildren(ctx); 
     }
@@ -310,9 +310,17 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
         jFile.println("\ticonst_1");
         jFile.println("\tL00" + Integer.toString(i+2) + ":");
         jFile.println("\tifeq L00" + Integer.toString(i));
-        i += 3;
         value = visitChildren(ctx.stmt(0));
+        jFile.println("\tgoto L00" + Integer.toString(i+3));
         jFile.println("\tL00" + Integer.toString(iVal) + ":");
+        try{
+            value = visitChildren(ctx.stmt(1));
+        } catch(Exception e){
+            //continue;
+        }
+        jFile.println("\tL00" + Integer.toString(i+3) + ":");
+        i += 4;
+        
         return value; 
     }
 
@@ -443,7 +451,7 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
         jFile.println("\tgetstatic             java/lang/System/out Ljava/io/PrintStream;");
         jFile.println("\tnew       java/lang/StringBuilder");
         jFile.println("\tdup");
-        jFile.println("\tldc \"Output = \"");
+        jFile.println("\tldc \"\"");
         jFile.println("\tinvokenonvirtual java/lang/StringBuilder/<init>(Ljava/lang/String;)V");
 
         Integer value = visitChildren(ctx);
@@ -465,12 +473,12 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
         jFile.println("\tgetstatic             java/lang/System/out Ljava/io/PrintStream;");
         jFile.println("\tnew       java/lang/StringBuilder");
         jFile.println("\tdup");
-        jFile.println("\tldc \"Output = \"");
+        jFile.println("\tldc \"\"");
         jFile.println("\tinvokenonvirtual java/lang/StringBuilder/<init>(Ljava/lang/String;)V");
 
         Integer value = visitChildren(ctx);
 
-        jFile.println("\tinvokevirtual java/lang/StringBuilder/append(D)Ljava/lang/StringBuilder;");
+        jFile.println("\tinvokevirtual java/lang/StringBuilder/append(F)Ljava/lang/StringBuilder;");
         jFile.println("\tinvokevirtual java/lang/StringBuilder/toString()Ljava/lang/String;");
         jFile.println("\tinvokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
 
@@ -482,7 +490,7 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
     public Integer visitPrintStringStmt(BusinessParser.PrintStringStmtContext ctx) 
     { 
         jFile.println("getstatic             java/lang/System/out Ljava/io/PrintStream;");
-        jFile.println("ldc " + ctx.string().getText().toString());
+        jFile.println("ldc " + ctx.STRING().getText().toString());
         jFile.println("invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
         return visitChildren(ctx); 
     }

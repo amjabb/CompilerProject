@@ -34,6 +34,7 @@ stmt : compoundStmt
      | functionAssignment
      | whileStatement
      | printStringStmt
+     | printDoubleStmt
      ;
 
 stmtList       : stmt ( ';' stmt )* ';' ;
@@ -43,7 +44,7 @@ funcStmt : funcAssignmentStmt | printStmt | returnStmt | funcVar;
 
 funcAssignmentStmt : variable '=' funcVar | funcExpr ;
 
-funcExpr : variable | number;
+funcExpr : variable | number  ;
 
 assignmentStmt : variable '=' expr ;
 
@@ -55,7 +56,7 @@ expr locals [ TypeSpec type = null ]
     | number               # unsignedNumberExpr
     | signedNumber         # signedNumberExpr
     | variable             # variableExpr
-    | string               # stringExpr
+    | STRING               # stringExpr
     | expr compareOp expr # compareExpr
     | '(' expr ')'         # parenExpr
     ;
@@ -119,18 +120,17 @@ funcVar
 
 printStmt: 'PRINT' '(' expr ')';
 
-printStringStmt: 'PRINT_S' '(' string ')';
+printStringStmt: 'PRINT_S' '(' STRING ')';
 
 printDoubleStmt: 'PRINT_D' '(' expr ')';
 
-string
-   : '"' ( IDENTIFIER | '_')* '"'
+STRING
+   : '"' ( ~'"')* '"'
    ;
 
 functionAssignment: IDENTIFIER '<=' callStmt;
 
 PROGRAM : 'PROGRAM' ;
-VAR     : 'GLOBAL VARS:' ;
 BEGIN   : '{' ;
 RETURN : 'RETURN';
 END     : '}' ;
