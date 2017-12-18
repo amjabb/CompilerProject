@@ -1,0 +1,76 @@
+// AUTHOR TEAM EXPECTED
+PROGRAM TestProgram;
+
+i, j, k : integer;
+realX, realY : real;
+
+def funct(n1, n2 : integer) : integer;
+    s: integer;
+    MAIN
+    {
+        i = n1;
+        PRINT(i);
+        RETURN n2;
+    };
+
+MAIN 
+{
+    PRINT_S("\n\nINTEGER ARITHMETIC\n-----------");
+    PRINT_S("4 * j + 8 / 2 =");
+    i = 28;
+    j = i;
+    i = 4 * j + 8 / 2;
+    PRINT(i);
+    
+    PRINT_S("\ni - 200 =");
+    i = i-200;
+    PRINT(i);
+
+
+
+    PRINT_S("\n\n IF/ELSE STATEMENT\n-------------------");
+    PRINT_S(" i > j ? 0 : 1");
+    IF i > j THEN k=0 ELSE k = 1;
+    PRINT(k);
+
+    PRINT_S("\n i < j ? 0 : 1");
+    IF i < j THEN k = 0 ELSE k = 1;
+    PRINT(k);
+
+
+    PRINT_S("\n\nDOUBLE ARITHMETIC\n------------------");
+    PRINT_S("realY / 5.6 + realX * 5.11 = ");
+    realX = 3.1;
+    realY = realX;
+    realY = realY/5.6 + realX*5.11;
+
+    PRINT_D(realY);
+
+    i = 0;
+
+    PRINT_S("\n\nWHILE LOOP\n-----------");
+    PRINT_S("WHILE i<10 PRINT(i)");
+    WHILE(i < 10){
+        PRINT(i);
+        i = i + 1;
+    };
+
+
+    realX = 500.0;
+
+    PRINT_S("\n\nRANGE LOOP\n-----------");
+    PRINT_S("LOOP[0..20] PRINT(realX/2.0)");
+    RANGE(20){
+        realX = realX/2.0;
+        PRINT_D(realX);
+    };
+
+    i = 5;
+
+    PRINT_S("\n\nFUNCTION CALL\n--------------");
+    PRINT_S("Pass 100,200 \nGlobal_i = %0");
+    j <= CALL funct(100,200);
+    PRINT_S("\nReturn %1");
+    PRINT(j);
+
+}.

@@ -1,0 +1,122 @@
+===== CROSS-REFERENCE TABLE =====
+
+*** PROGRAM TestProgram ***
+
+Identifier       Line numbers    Type specification
+----------       ------------    ------------------
+funct           
+                                 Defined as: function
+                                 Scope nesting level: 1
+i               
+                                 Defined as: variable
+                                 Scope nesting level: 1
+                                 Type form = scalar, Type id = integer
+j               
+                                 Defined as: variable
+                                 Scope nesting level: 1
+                                 Type form = scalar, Type id = integer
+k               
+                                 Defined as: variable
+                                 Scope nesting level: 1
+                                 Type form = scalar, Type id = integer
+realX           
+                                 Defined as: variable
+                                 Scope nesting level: 1
+                                 Type form = scalar, Type id = real
+realY           
+                                 Defined as: variable
+                                 Scope nesting level: 1
+                                 Type form = scalar, Type id = real
+
+*** FUNCTION funct ***
+
+Identifier       Line numbers    Type specification
+----------       ------------    ------------------
+n1              
+                                 Defined as: variable
+                                 Scope nesting level: 2
+                                 Type form = scalar, Type id = integer
+n2              
+                                 Defined as: variable
+                                 Scope nesting level: 2
+                                 Type form = scalar, Type id = integer
+s               
+                                 Defined as: variable
+                                 Scope nesting level: 2
+                                 Type form = scalar, Type id = integer
+Generated: TestProgram.class
+
+
+INTEGER ARITHMETIC
+-----------
+4 * j + 8 / 2 =
+116
+
+i - 200 =
+-84
+
+
+ IF/ELSE STATEMENT
+-------------------
+ i > j ? 0 : 1
+1
+
+ i < j ? 0 : 1
+0
+
+
+DOUBLE ARITHMETIC
+------------------
+realY / 5.6 + realX * 5.11 = 
+16.394571
+
+
+WHILE LOOP
+-----------
+WHILE i<10 PRINT(i)
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+
+RANGE LOOP
+-----------
+LOOP[0..20] PRINT(realX/2.0)
+250.0
+125.0
+62.5
+31.25
+15.625
+7.8125
+3.90625
+1.953125
+0.9765625
+0.48828125
+0.24414062
+0.12207031
+0.061035156
+0.030517578
+0.015258789
+0.0076293945
+0.0038146973
+0.0019073486
+9.536743E-4
+4.7683716E-4
+
+
+FUNCTION CALL
+--------------
+Pass 100,200 
+Global_i = %0
+100
+
+Return %1
+200
+
