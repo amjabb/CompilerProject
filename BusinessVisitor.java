@@ -330,6 +330,12 @@ public interface BusinessVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrintStringStmt(BusinessParser.PrintStringStmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link BusinessParser#printDoubleStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintDoubleStmt(BusinessParser.PrintDoubleStmtContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link BusinessParser#string}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

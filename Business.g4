@@ -41,11 +41,11 @@ funcStmtList       : funcStmt ( ';' funcStmt )* ';';
 
 funcStmt : funcAssignmentStmt | printStmt | returnStmt | funcVar;
 
-funcAssignmentStmt : variable ':=' funcVar | funcExpr ;
+funcAssignmentStmt : variable '=' funcVar | funcExpr ;
 
 funcExpr : variable | number;
 
-assignmentStmt : variable ':=' expr ;
+assignmentStmt : variable '=' expr ;
 
 variable : IDENTIFIER ;
 
@@ -121,8 +121,10 @@ printStmt: 'PRINT' '(' expr ')';
 
 printStringStmt: 'PRINT_S' '(' string ')';
 
+printDoubleStmt: 'PRINT_D' '(' expr ')';
+
 string
-   : '\'' ('\'\'' | ~ ('\''))* '\''
+   : '"' ( IDENTIFIER | '_')* '"'
    ;
 
 functionAssignment: IDENTIFIER '<=' callStmt;

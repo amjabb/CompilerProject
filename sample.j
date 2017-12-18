@@ -16,7 +16,7 @@
 .field private static alpha F
 .field private static beta5x F
 
-; defadder(n1,n2:integer):integer;s:integer;MAIN{s:=n2;RETURNn1;}
+; defadder(n1,n2:integer):integer;s:integer;MAIN{s=n2;RETURNn1;}
 
 .field private static n1 I
 .field private static n2 I
@@ -54,17 +54,23 @@ ireturn
 	invokenonvirtual PascalTextIn/<init>()V
 	putstatic        sample/_standardIn LPascalTextIn;
 
-; i:=32
+; PRINT_S("ARITHMETIC")
+
+getstatic             java/lang/System/out Ljava/io/PrintStream;
+ldc "ARITHMETIC"
+invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V
+
+; i=32
 
 	ldc	32
 	putstatic	sample/i I
 
-; j:=i
+; j=i
 
 	getstatic	sample/i I
 	putstatic	sample/j I
 
-; i:=-2+3*j
+; i=-2+3*j
 
 	ldc	2
 	ineg
@@ -74,7 +80,28 @@ ireturn
 	iadd
 	putstatic	sample/i I
 
-; IFi>jTHENIF0<1THENi:=1
+; PRINT(i)
+
+	.limit stack          2
+	.limit locals         1
+	.line                 6
+	getstatic             java/lang/System/out Ljava/io/PrintStream;
+	new       java/lang/StringBuilder
+	dup
+	ldc "Output = "
+	invokenonvirtual java/lang/StringBuilder/<init>(Ljava/lang/String;)V
+	getstatic	sample/i I
+	invokevirtual java/lang/StringBuilder/append(I)Ljava/lang/StringBuilder;
+	invokevirtual java/lang/StringBuilder/toString()Ljava/lang/String;
+	invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V
+
+; PRINT_S("NESTED_IF_STATEMENT")
+
+getstatic             java/lang/System/out Ljava/io/PrintStream;
+ldc "NESTED_IF_STATEMENT"
+invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V
+
+; IFi>jTHENIF0<1THENi=1
 
 	getstatic	sample/i I
 	getstatic	sample/j I
@@ -99,17 +126,38 @@ ireturn
 	L004:
 	L001:
 
-; alpha:=9.3
+; PRINT(i)
+
+	.limit stack          2
+	.limit locals         1
+	.line                 6
+	getstatic             java/lang/System/out Ljava/io/PrintStream;
+	new       java/lang/StringBuilder
+	dup
+	ldc "Output = "
+	invokenonvirtual java/lang/StringBuilder/<init>(Ljava/lang/String;)V
+	getstatic	sample/i I
+	invokevirtual java/lang/StringBuilder/append(I)Ljava/lang/StringBuilder;
+	invokevirtual java/lang/StringBuilder/toString()Ljava/lang/String;
+	invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V
+
+; PRINT_S("DOUBLE_ARITHMETIC")
+
+getstatic             java/lang/System/out Ljava/io/PrintStream;
+ldc "DOUBLE_ARITHMETIC"
+invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V
+
+; alpha=9.3
 
 	ldc	9.3
 	putstatic	sample/alpha F
 
-; beta5x:=alpha
+; beta5x=alpha
 
 	getstatic	sample/alpha F
 	putstatic	sample/beta5x F
 
-; beta5x:=alpha/3.7-alpha*2.88
+; beta5x=alpha/3.7-alpha*2.88
 
 	getstatic	sample/alpha F
 	ldc	3.7
@@ -120,7 +168,7 @@ ireturn
 	fsub
 	putstatic	sample/beta5x F
 
-; beta5x:=8.45*(alpha+9.12)
+; beta5x=8.45*(alpha+9.12)
 
 	ldc	8.45
 	getstatic	sample/alpha F
@@ -129,12 +177,18 @@ ireturn
 	fmul
 	putstatic	sample/beta5x F
 
-; i:=0
+; i=0
 
 	ldc	0
 	putstatic	sample/i I
 
-; RANGE(20){i:=i+1;}
+; PRINT_S("FOR_LOOP")
+
+getstatic             java/lang/System/out Ljava/io/PrintStream;
+ldc "FOR_LOOP"
+invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V
+
+; RANGE(20){i=i+1;PRINT(i);}
 
 .limit stack 20
 	ldc	20
@@ -144,12 +198,27 @@ putstatic sample/z I
 getstatic sample/z I
 	if_icmpge	W008
 
-; i:=i+1
+; i=i+1
 
 	getstatic	sample/i I
 	ldc	1
 	iadd
 	putstatic	sample/i I
+
+; PRINT(i)
+
+	.limit stack          2
+	.limit locals         1
+	.line                 6
+	getstatic             java/lang/System/out Ljava/io/PrintStream;
+	new       java/lang/StringBuilder
+	dup
+	ldc "Output = "
+	invokenonvirtual java/lang/StringBuilder/<init>(Ljava/lang/String;)V
+	getstatic	sample/i I
+	invokevirtual java/lang/StringBuilder/append(I)Ljava/lang/StringBuilder;
+	invokevirtual java/lang/StringBuilder/toString()Ljava/lang/String;
+	invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V
 ldc -1
 getstatic sample/z I
 iadd
@@ -157,18 +226,18 @@ putstatic sample/z I
 	goto W007
 	W008:
 
-; i:=0
+; i=0
 
 	ldc	0
 	putstatic	sample/i I
 
-; PRINT_S('hello')
+; PRINT_S("WHILE_LOOP")
 
 getstatic             java/lang/System/out Ljava/io/PrintStream;
-ldc "hello"
+ldc "WHILE_LOOP"
 invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V
 
-; WHILE(i<10){i:=i+1;PRINT(i);}
+; WHILE(i<10){i=i+1;PRINT(i);}
 
 .limit stack 4
 	W009:
@@ -178,7 +247,7 @@ invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V
 goto W0011
  W0010:
 
-; i:=i+1
+; i=i+1
 
 	getstatic	sample/i I
 	ldc	1
@@ -202,7 +271,7 @@ goto W0011
 	goto W009
 	W0011:
 
-; IF(0<1)THENi:=5
+; IF(0<1)THENi=5
 
 	ldc	0
 	ldc	1
@@ -217,7 +286,7 @@ goto W0011
 	putstatic	sample/i I
 	L0012:
 
-; i:=5
+; i=5
 
 	ldc	5
 	putstatic	sample/i I
