@@ -1,4 +1,4 @@
-grammar Business;  // A tiny subset of Pascal
+grammar Business;  
 
 @header {
     import wci.intermediate.*;
@@ -11,7 +11,7 @@ mainBlock : block;
 block     : declarations main compoundStmt ;
 main : MAIN;
 
-declarations : VAR declList ';' ;
+declarations : declList ';' ;
 declList     : decl ( ';' decl )* ;
 decl         : varList ':' typeId
              | functionDeclaration ;
@@ -22,16 +22,29 @@ typeId       : IDENTIFIER ;
 
 compoundStmt : BEGIN stmtList END ;
 
+funcCompoundStmt : BEGIN funcStmtList END ;
+
 stmt : compoundStmt
      | assignmentStmt
      | ifStatement
-     | whileStatement
+     | forStatement
      | printStmt
      | returnStmt
      | callStmt
+     | functionAssignment
+     | whileStatement
+     | printStringStmt
      ;
 
-stmtList       : stmt ( ';' stmt )* ;
+stmtList       : stmt ( ';' stmt )* ';' ;
+funcStmtList       : funcStmt ( ';' funcStmt )* ';';
+
+funcStmt : funcAssignmentStmt | printStmt | returnStmt | funcVar;
+
+funcAssignmentStmt : variable ':=' funcVar | funcExpr ;
+
+funcExpr : variable | number;
+
 assignmentStmt : variable ':=' expr ;
 
 variable : IDENTIFIER ;
@@ -66,27 +79,25 @@ ifStatement
    : 'IF' expr 'THEN' stmt (: 'ELSE' stmt)?
    ;
 
-whileStatement
-   : 'WHILE' expr 'DO' stmt
+forStatement
+   : 'RANGE' '(' INTEGER ')' compoundStmt
    ;
+
+whileStatement
+  : 'WHILE' '(' expr ')' compoundStmt;
 
 functionDeclaration
-   : 'FUNCTION' funcId (formalParameterList)? ':' IDENTIFIER ';' VAR decl ';' compoundStmt
+   : function funcId (formalParameterList)? ':' IDENTIFIER ';' decl ';' funcMain funcCompoundStmt
    ;
 
-returnStmt: RETURN;
+returnStmt: RETURN funcVar?;
 
 formalParameterList
-   : '(' formalParameterSection (';' formalParameterSection)* ')'
-   ;
-
-formalParameterSection
-   : parameterGroup
-   | 'VAR' parameterGroup
+   : '(' parameterGroup (';' parameterGroup)* ')'
    ;
 
 parameterGroup
-   : decl
+   : varList ':' typeId
    ;
 
 callStmt : CALL functionDesignator;
@@ -103,20 +114,29 @@ actualParameter
    : expr
    ;
 
+funcVar
+  : FUNCVAR INTEGER | variable;
+
 printStmt: 'PRINT' '(' expr ')';
+
+printStringStmt: 'PRINT_S' '(' string ')';
 
 string
    : '\'' ('\'\'' | ~ ('\''))* '\''
    ;
 
+functionAssignment: IDENTIFIER '<=' callStmt;
 
 PROGRAM : 'PROGRAM' ;
-VAR     : 'VAR' ;
-BEGIN   : 'BEGIN' ;
+VAR     : 'GLOBAL VARS:' ;
+BEGIN   : '{' ;
 RETURN : 'RETURN';
-END     : 'END' ;
+END     : '}' ;
 MAIN : 'MAIN';
 CALL : 'CALL';
+FUNCVAR : 'FUNCVAR';
+funcMain : 'MAIN';
+function: 'def';
 
 IDENTIFIER : [a-zA-Z][a-zA-Z0-9]* ;
 INTEGER    : [0-9]+ ;

@@ -3,6 +3,7 @@
 
 .field private static _runTimer LRunTimer;
 .field private static _standardIn LPascalTextIn;
+.field private static z I
 
 ; i,j,k:integer
 
@@ -15,10 +16,7 @@
 .field private static alpha F
 .field private static beta5x F
 
-; FUNCTIONadder(n1,n2:integer):integer;VARs:integer;BEGINi:=n1;RETURNEND
-
-
-; n1,n2:integer
+; defadder(n1,n2:integer):integer;s:integer;MAIN{s:=n2;RETURNn1;}
 
 .field private static n1 I
 .field private static n2 I
@@ -37,15 +35,9 @@
 .limit stack 1
 .end method
 .method public static adder(II)I
-
-; i:=n1
-
-	getstatic	sample/n1 I
-	putstatic	sample/i I
-
-; RETURN
-
-getstatic    sample/i I
+iload_1
+	putstatic	sample/s I
+iload_0
 ireturn
 .limit locals 5
 .limit stack 5
@@ -82,7 +74,7 @@ ireturn
 	iadd
 	putstatic	sample/i I
 
-; IFi>jTHENi:=1
+; IFi>jTHENIF0<1THENi:=1
 
 	getstatic	sample/i I
 	getstatic	sample/j I
@@ -93,8 +85,18 @@ ireturn
 	iconst_1
 	L003:
 	ifeq L001
+	ldc	0
+	ldc	1
+	if_icmplt L005
+	iconst_0
+	goto L006
+	L005:
+	iconst_1
+	L006:
+	ifeq L004
 	ldc	1
 	putstatic	sample/i I
+	L004:
 	L001:
 
 ; alpha:=9.3
@@ -127,15 +129,20 @@ ireturn
 	fmul
 	putstatic	sample/beta5x F
 
-; WHILEi<10DOi:=i+1
+; i:=0
 
-	W001:
-	getstatic	sample/i I
-	ldc	10
-	if_icmplt W002
+	ldc	0
+	putstatic	sample/i I
+
+; RANGE(20){i:=i+1;}
+
+.limit stack 20
+	ldc	20
+putstatic sample/z I
+	W007:
 	iconst_0
-	goto W003
-	W002:
+getstatic sample/z I
+	if_icmpge	W008
 
 ; i:=i+1
 
@@ -143,31 +150,42 @@ ireturn
 	ldc	1
 	iadd
 	putstatic	sample/i I
-	goto W001
-	W003:
+ldc -1
+getstatic sample/z I
+iadd
+putstatic sample/z I
+	goto W007
+	W008:
 
-; IF(0<1)THENi:=5
+; i:=0
 
 	ldc	0
-	ldc	1
-	if_icmplt L005
-	iconst_0
-	goto L006
-	L005:
-	iconst_1
-	L006:
-	ifeq L004
-	ldc	5
 	putstatic	sample/i I
-	L004:
 
-; CALLadder(100,200)
+; PRINT_S('hello')
 
-	ldc	100
-	ldc	200
-invokestatic sample/adder(II)I
+getstatic             java/lang/System/out Ljava/io/PrintStream;
+ldc "hello"
+invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V
 
-; PRINT('i')
+; WHILE(i<10){i:=i+1;PRINT(i);}
+
+.limit stack 4
+	W009:
+	getstatic	sample/i I
+	ldc	10
+	if_icmplt W0010
+goto W0011
+ W0010:
+
+; i:=i+1
+
+	getstatic	sample/i I
+	ldc	1
+	iadd
+	putstatic	sample/i I
+
+; PRINT(i)
 
 	.limit stack          2
 	.limit locals         1
@@ -177,10 +195,32 @@ invokestatic sample/adder(II)I
 	dup
 	ldc "Output = "
 	invokenonvirtual java/lang/StringBuilder/<init>(Ljava/lang/String;)V
-	ldc                   "'i'"
+	getstatic	sample/i I
 	invokevirtual java/lang/StringBuilder/append(I)Ljava/lang/StringBuilder;
 	invokevirtual java/lang/StringBuilder/toString()Ljava/lang/String;
 	invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V
+	goto W009
+	W0011:
+
+; IF(0<1)THENi:=5
+
+	ldc	0
+	ldc	1
+	if_icmplt L0013
+	iconst_0
+	goto L0014
+	L0013:
+	iconst_1
+	L0014:
+	ifeq L0012
+	ldc	5
+	putstatic	sample/i I
+	L0012:
+
+; i:=5
+
+	ldc	5
+	putstatic	sample/i I
 
 	getstatic     sample/_runTimer LRunTimer;
 	invokevirtual RunTimer.printElapsedTime()V

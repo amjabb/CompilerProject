@@ -3,10 +3,14 @@ import java.io.PrintWriter;
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 
+import java.util.*;
+
 public class Pass2Visitor extends BusinessBaseVisitor<Integer> 
 {
     String programName;
     private PrintWriter jFile;
+
+    HashMap< String,Integer> hm = new HashMap< String,Integer>();
     
     public Pass2Visitor(PrintWriter jFile)
     {
@@ -91,6 +95,39 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
 
         return value; 
     }
+
+    @Override 
+    public Integer visitFuncAssignmentStmt(BusinessParser.FuncAssignmentStmtContext ctx)
+    {
+        // Integer value = visit(ctx.expr());
+        
+        // String typeIndicator = (ctx.expr().type == Predefined.integerType) ? "I"
+        //                      : (ctx.expr().type == Predefined.realType)    ? "F"
+        //                      :                                    "I";
+        
+        // Emit a field put instruction.
+        Integer value = visitChildren(ctx);
+
+        jFile.println("\tputstatic\t" + programName
+                           +  "/" + ctx.variable().IDENTIFIER().toString() 
+                           + " I");
+
+        return value; 
+    }
+
+
+
+    @Override 
+    public Integer visitFunctionAssignment(BusinessParser.FunctionAssignmentContext ctx) 
+    {   
+        Integer value = visitChildren(ctx);
+        // Emit a field put instruction.
+        jFile.println("\tputstatic\t" + programName
+                           +  "/" + ctx.IDENTIFIER().toString() 
+                           + " I");
+        return value; 
+    }
+
 
     @Override 
     public Integer visitAddSubExpr(BusinessParser.AddSubExprContext ctx)
@@ -265,6 +302,7 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
     { 
         
         Integer value = visit(ctx.expr());
+        Integer iVal = i;
         jFile.print(" L00" + Integer.toString(i+1) + "\n");
         jFile.println("\ticonst_0");
         jFile.println("\tgoto L00" + Integer.toString(i+2));
@@ -272,41 +310,83 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
         jFile.println("\ticonst_1");
         jFile.println("\tL00" + Integer.toString(i+2) + ":");
         jFile.println("\tifeq L00" + Integer.toString(i));
-        value = visitChildren(ctx.stmt(0));
-        jFile.println("\tL00" + Integer.toString(i) + ":");
         i += 3;
+        value = visitChildren(ctx.stmt(0));
+        jFile.println("\tL00" + Integer.toString(iVal) + ":");
         return value; 
     }
 
-    static Integer j = 1;
+    @Override 
+    public Integer visitForStatement(BusinessParser.ForStatementContext ctx) 
+    { 
+        String value = ctx.INTEGER().getText();
+        jFile.println(".limit stack " + value);
+        
+        jFile.println("\tldc\t" + value);
+        jFile.println("putstatic " + programName + "/z I");
+
+        jFile.println("\tW00" + Integer.toString(i) + ":");
+        jFile.println("\ticonst_0");
+        jFile.println("getstatic " + programName + "/z I");
+        jFile.println("\tif_icmpge\tW00" + Integer.toString(i+1));
+        Integer rValue = visit(ctx.compoundStmt());
+        jFile.println("ldc -1");
+        jFile.println("getstatic " + programName + "/z I");
+        jFile.println("iadd");
+        jFile.println("putstatic " + programName + "/z I");
+        jFile.println("\tgoto W00" + Integer.toString(i));
+        jFile.println("\tW00" + Integer.toString(i+1) + ":");
+        i += 2;
+        return rValue; 
+    }
+
     @Override 
     public Integer visitWhileStatement(BusinessParser.WhileStatementContext ctx) 
     { 
-        
-        jFile.println("\tW00" + Integer.toString(j) + ":");
-        Integer value = visit(ctx.expr());
-        jFile.print(" W00" + Integer.toString(j+1) + "\n");
-        jFile.println("\ticonst_0");
-        jFile.println("\tgoto W00" + Integer.toString(j+2));
-        jFile.println("\tW00" + Integer.toString(j+1) + ":");
-        value = visit(ctx.stmt());
-        jFile.println("\tgoto W00" + Integer.toString(j));
-        jFile.println("\tW00" + Integer.toString(j+2) +":");
-        j += 3;
-        return value; 
+        //String value = ctx.INTEGER().getText();
+        jFile.println(".limit stack 4");
+        jFile.println("\tW00" + Integer.toString(i) + ":");
+        visit(ctx.expr()); jFile.print(" W00" + Integer.toString(i+1) + "\n");
+        jFile.println("goto W00" + Integer.toString(i+2));
+        jFile.println(" W00" + Integer.toString(i+1) + ":");
+        Integer rValue = visit(ctx.compoundStmt());
+        jFile.println("\tgoto W00" + Integer.toString(i));
+        jFile.println("\tW00" + Integer.toString(i+2) + ":");
+        i += 3;
+        return rValue; 
     }
 
+    static Integer j = 0;
     @Override 
     public Integer visitFormalParameterList(BusinessParser.FormalParameterListContext ctx) 
     { 
+        // for(j = 0; j < ctx.formalParameterSection(0).parameterGroup().varList().varId().size(); j++){
+        //     hm.put(ctx.formalParameterSection(0).parameterGroup().varList().varId(j).getText(), j);
+        // }
         return visitChildren(ctx); 
     }
 
 
+    HashMap<String, Integer> varHash = new HashMap<String, Integer>();
+
    @Override 
     public Integer visitFunctionDeclaration(BusinessParser.FunctionDeclarationContext ctx)
     { 
-        jFile.println(".method public static adder(II)I");
+        String functionName = ctx.funcId().IDENTIFIER().getText();
+        jFile.println(".method public static " + functionName + "(II)I");
+        for(Integer i = 0; i < ctx.formalParameterList().parameterGroup(0).varList().varId().size(); i++){
+            varHash.put(ctx.formalParameterList().parameterGroup(0).varList().varId(i).IDENTIFIER().getText(), i);
+        }
+
+        // Set set = varHash.entrySet();
+        //   Iterator iterator = set.iterator();
+        //   while(iterator.hasNext()) {
+        //      Map.Entry mentry = (Map.Entry)iterator.next();
+        //      System.out.print("key is: "+ mentry.getKey() + " & Value is: ");
+        //      System.out.println(mentry.getValue());
+        //   }
+
+
         //works
         // jFile.println("iload_0");
         // jFile.println("putstatic    sample/i I"); 
@@ -319,12 +399,12 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
     @Override 
     public Integer visitReturnStmt(BusinessParser.ReturnStmtContext ctx) 
     { 
-        jFile.println("getstatic    sample/i I");
+        Integer value = visitChildren(ctx);
         jFile.println("ireturn");
         jFile.println(".limit locals 5");
         jFile.println(".limit stack 5");
         jFile.println(".end method");
-        return visitChildren(ctx); 
+        return value; 
     }
 
     @Override 
@@ -334,6 +414,23 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
         jFile.println("invokestatic "+ programName + "/" + ctx.functionDesignator().IDENTIFIER().getText() + "(II)I");
         return value; 
     }
+
+
+    @Override 
+    public Integer visitFuncVar(BusinessParser.FuncVarContext ctx)
+     { 
+        String value;
+        try {
+            value = ctx.INTEGER().getText().toString();
+        } catch(Exception e) {
+            value = Integer.toString(varHash.get(ctx.variable().IDENTIFIER().getText().toString()));
+
+        }
+        
+        jFile.println("iload_" + value);
+        return visitChildren(ctx); 
+    }
+
 
 
     @Override 
@@ -360,6 +457,16 @@ public class Pass2Visitor extends BusinessBaseVisitor<Integer>
 
         return 1; 
     }
+
+    @Override 
+    public Integer visitPrintStringStmt(BusinessParser.PrintStringStmtContext ctx) 
+    { 
+        jFile.println("getstatic             java/lang/System/out Ljava/io/PrintStream;");
+        jFile.println("ldc " + ctx.string().getText());
+        jFile.println("invokevirtual         java/io/PrintStream/println(Ljava/lang/String;)V");
+        return visitChildren(ctx); 
+    }
+
 
 
 

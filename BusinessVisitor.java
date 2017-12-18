@@ -92,6 +92,12 @@ public interface BusinessVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCompoundStmt(BusinessParser.CompoundStmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link BusinessParser#funcCompoundStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncCompoundStmt(BusinessParser.FuncCompoundStmtContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link BusinessParser#stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -103,6 +109,30 @@ public interface BusinessVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStmtList(BusinessParser.StmtListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BusinessParser#funcStmtList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncStmtList(BusinessParser.FuncStmtListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BusinessParser#funcStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncStmt(BusinessParser.FuncStmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BusinessParser#funcAssignmentStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncAssignmentStmt(BusinessParser.FuncAssignmentStmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BusinessParser#funcExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncExpr(BusinessParser.FuncExprContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link BusinessParser#assignmentStmt}.
 	 * @param ctx the parse tree
@@ -222,6 +252,12 @@ public interface BusinessVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIfStatement(BusinessParser.IfStatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link BusinessParser#forStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForStatement(BusinessParser.ForStatementContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link BusinessParser#whileStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -245,12 +281,6 @@ public interface BusinessVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFormalParameterList(BusinessParser.FormalParameterListContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link BusinessParser#formalParameterSection}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFormalParameterSection(BusinessParser.FormalParameterSectionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link BusinessParser#parameterGroup}.
 	 * @param ctx the parse tree
@@ -282,15 +312,45 @@ public interface BusinessVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitActualParameter(BusinessParser.ActualParameterContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link BusinessParser#funcVar}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncVar(BusinessParser.FuncVarContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link BusinessParser#printStmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitPrintStmt(BusinessParser.PrintStmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link BusinessParser#printStringStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintStringStmt(BusinessParser.PrintStringStmtContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link BusinessParser#string}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitString(BusinessParser.StringContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BusinessParser#functionAssignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionAssignment(BusinessParser.FunctionAssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BusinessParser#funcMain}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncMain(BusinessParser.FuncMainContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BusinessParser#function}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunction(BusinessParser.FunctionContext ctx);
 }

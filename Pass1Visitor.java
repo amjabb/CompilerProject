@@ -15,6 +15,7 @@ public class Pass1Visitor extends BusinessBaseVisitor<Integer>
     private SymTabEntry programId;
     private ArrayList<SymTabEntry> variableIdList;
     private PrintWriter jFile;
+    private String programName;
     
     public Pass1Visitor()
     {
@@ -40,7 +41,7 @@ public class Pass1Visitor extends BusinessBaseVisitor<Integer>
     @Override 
     public Integer visitHeader(BusinessParser.HeaderContext ctx) 
     { 
-        String programName = ctx.IDENTIFIER().toString();
+        programName = ctx.IDENTIFIER().toString();
         
         programId = symTabStack.enterLocal(programName);
         programId.setDefinition(DefinitionImpl.PROGRAM);
@@ -65,6 +66,7 @@ public class Pass1Visitor extends BusinessBaseVisitor<Integer>
         jFile.println();
         jFile.println(".field private static _runTimer LRunTimer;");
         jFile.println(".field private static _standardIn LPascalTextIn;");
+        jFile.println(".field private static z I");
 
         return visitChildren(ctx);
     }
@@ -107,7 +109,6 @@ public class Pass1Visitor extends BusinessBaseVisitor<Integer>
     public Integer visitVarId(BusinessParser.VarIdContext ctx) 
     {
         String variableName = ctx.IDENTIFIER().toString();
-        
         SymTabEntry variableId = symTabStack.enterLocal(variableName);
         variableId.setDefinition(VARIABLE);
         variableIdList.add(variableId);
@@ -118,11 +119,6 @@ public class Pass1Visitor extends BusinessBaseVisitor<Integer>
     @Override 
     public Integer visitFuncId(BusinessParser.FuncIdContext ctx) 
     {
-        String variableName = ctx.IDENTIFIER().toString();
-        
-        SymTabEntry variableId = symTabStack.enterLocal(variableName);
-        variableId.setDefinition(FUNCTION);
-        variableIdList.add(variableId);
         
         return visitChildren(ctx); 
     }
@@ -215,14 +211,24 @@ public class Pass1Visitor extends BusinessBaseVisitor<Integer>
     @Override 
     public Integer visitFunctionDeclaration(BusinessParser.FunctionDeclarationContext ctx)
      { 
-        symTabStack.push();
+        variableIdList = new ArrayList<SymTabEntry>();
+        String variableName = ctx.funcId().IDENTIFIER().toString();
+
+        SymTabEntry variableId = symTabStack.enterLocal(variableName);
+
+        variableId.setDefinition(DefinitionImpl.FUNCTION);
+        variableIdList.add(variableId);
+
+        programId.setAttribute(ROUTINE_ROUTINES, variableIdList);
+        variableId.setAttribute(ROUTINE_SYMTAB, symTabStack.push());
+
         return visitChildren(ctx); 
     }
 
     @Override 
     public Integer visitReturnStmt(BusinessParser.ReturnStmtContext ctx) 
     { 
-        symTabStack.pop();
+        //symTabStack.pop();
         return visitChildren(ctx); 
     }
 
